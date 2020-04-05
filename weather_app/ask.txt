@@ -1,0 +1,7 @@
+- Lỗi nhiều tại sao
+- Làm sao có query /home/search?  trong form mà không bị rerender
+- Làm sao làm được gợi ý 
+- Back ground blur xung quanh, rõ ở trung tâm
+- fetch ?
+- 
+
