@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { makeStyles, AppBar, Box, Grid, Button } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
@@ -48,8 +48,8 @@ function Header(props) {
           </Grid>
           <Grid item>
             <Button className={classes.button_pure_css}>
-              <Link to="/about" className={classes.link_pure_css}>
-                About
+              <Link to="/social" className={classes.link_pure_css}>
+                Social
               </Link>
             </Button>
           </Grid>

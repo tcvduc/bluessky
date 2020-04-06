@@ -1,21 +1,15 @@
 import React, { Component } from "react";
 import Header from "./Header";
 import Main from "./Main";
-import Footer from "./Footer";
-import { withStyles, Grid, Container, Box } from "@material-ui/core";
-
-import Home from "./Home";
-import About from "./About";
-import MainBackGround from "./../assets/image/8k.gif";
-import AboutBackGround from "./../assets/image/8k2.jpg";
-
-import PropTypes from "prop-types";
+import { withStyles, Grid, Container } from "@material-ui/core";
+import HomeBackGround from "./../assets/image/8k2.jpg";
+import socialBackGround from "./../assets/gif/8k.gif";
 import { withRouter } from "react-router";
-
+import Footer from "./Footer";
 const styles = (theme) => ({
   root: {},
   behindHomeBg: {
-    backgroundImage: `url(${MainBackGround})`,
+    backgroundImage: `url(${HomeBackGround})`,
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
@@ -23,9 +17,9 @@ const styles = (theme) => ({
     filter: "blur(0)",
     zIndex: 1,
   },
-  behindAboutBg: {
-    backgroundImage: `url(${AboutBackGround})`,
-    backgroundPosition: "initial",
+  behindsocialBg: {
+    backgroundImage: `url(${socialBackGround})`,
+    backgroundPosition: "left(100px)",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     height: "100vh",
@@ -49,7 +43,7 @@ const styles = (theme) => ({
   homeComponentBg: {
     position: "absolute",
     borderRadius: "5px",
-    backgroundImage: `url(${MainBackGround})`,
+    backgroundImage: `url(${HomeBackGround})`,
     backgroundPosition: "initial",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
@@ -61,11 +55,11 @@ const styles = (theme) => ({
     left: "52%",
     transform: "translate(-50%,-50%)",
   },
-  aboutComponentBg: {
+  socialComponentBg: {
     position: "absolute",
     borderRadius: "5px",
-    backgroundImage: `url(${AboutBackGround})`,
-    backgroundPosition: "initial",
+    backgroundImage: `url(${socialBackGround})`,
+    backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     height: "80vh",
@@ -96,20 +90,21 @@ class WeatherApp extends Component {
     const { pathname } = this.props.location;
     console.log(pathname);
 
+    // handle path background weatherapp component
     const checkPathWeatherApp = (path) => {
-      if (path === "/home") {
+      if (path === "/home" || path === "/") {
         return classes.homeComponentBg;
-      } else if (path === "/about") {
-        return classes.aboutComponentBg;
+      } else if (path === "/social") {
+        return classes.socialComponentBg;
       }
       return " ";
     };
-
+    /* function handle background fullwidth app */
     const checkPathBehindBgWeatherApp = (path) => {
-      if (path === "/home") {
+      if (path === "/home" || path === "/") {
         return classes.behindHomeBg;
-      } else if (path === "/about") {
-        return classes.behindAboutBg;
+      } else if (path === "/social") {
+        return classes.behindsocialBg;
       }
       return " ";
     };
@@ -117,7 +112,6 @@ class WeatherApp extends Component {
     return (
       <Container maxWidth="100vw" className={classes.container_pure_css}>
         <div className={checkPathBehindBgWeatherApp(pathname)}></div>
-
         <Grid
           container
           wrap
@@ -145,6 +139,9 @@ class WeatherApp extends Component {
             className={classes.pt_0 + " " + classes.bottom_place}
           >
             <Main></Main>
+          </Grid>
+          <Grid item md={12}>
+            <Footer />
           </Grid>
         </Grid>
       </Container>

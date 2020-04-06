@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import MainBackGround from "./../assets/image/8k.jpg";
-import { Box, TextField } from "@material-ui/core";
+
+import { Box } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { Route } from "react-router-dom";
+
 import SearchInput from "./SearchInput";
 import SearchResult from "./SearchResult";
 
