@@ -24,7 +24,7 @@
     "request-promise": "^4.2.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node src/server.js",
     "server": "node ./src/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
