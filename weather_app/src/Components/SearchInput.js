@@ -62,8 +62,6 @@ class SearchInput extends Component {
           onChange={this.handleChange}
           className={classes.textField_color}
           label="Place"
-          autoComplete
-          size="large"
           fullWidth={true}
           inputProps={classes.cl_white}
         />

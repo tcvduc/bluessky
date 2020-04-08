@@ -15,8 +15,13 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     padding: "0 20px",
   },
-  d_flex: {
+  d_flex_end: {
     display: "flex",
+    justifyContent: "flex-end",
+  },
+  d_flex_center: {
+    display: "flex",
+    justifyContent: "center",
   },
   time_icon_css: {},
   mr_10: {
@@ -32,7 +37,7 @@ function RealTimeClock() {
   return { hour, minute, second };
 }
 
-let log = console.log;
+// let log = console.log;
 
 function SearchResult(props) {
   const classes = useStyles();
@@ -44,7 +49,7 @@ function SearchResult(props) {
   const dataPutIntoSearchResul = dataSearch[dataIndex];
 
   //log(dataPutIntoSearchResul);
-  log(isLoading);
+  //log(isLoading);
 
   const [completed, setCompleted] = React.useState(0);
   React.useEffect(() => {
@@ -74,7 +79,7 @@ function SearchResult(props) {
     </Box>
   ) : (
     <Grid container className={classes.resultBg} spacing={3}>
-      <Grid className={classes.d_flex} item md={6}>
+      <Grid className={classes.d_flex_center} item md={6}>
         <div id="time_icon" className={classes.mr_10}>
           <svg
             className="time_icon_css"
@@ -89,57 +94,22 @@ function SearchResult(props) {
         </div>
         <div id="real-time-clock">{timer.hour + ":" + timer.minute}</div>
       </Grid>
-      <Grid
-        className={classes.d_flex}
-        item
-        xs={6}
-        sm={6}
-        md={6}
-        justify="flex-end"
-      >
+      <Grid className={classes.d_flex_center} item xs={6} sm={6} md={6}>
         icon
       </Grid>
 
-      <Grid
-        className={classes.d_flex}
-        item
-        xs={12}
-        sm={12}
-        md={12}
-        justify="center"
-      >
+      <Grid className={classes.d_flex_center} item xs={12} sm={12} md={12}>
         {dataPutIntoSearchResul.place_name}
       </Grid>
-      <Grid
-        className={classes.d_flex}
-        item
-        xs={12}
-        sm={12}
-        md={12}
-        justify="center"
-      >
-        <Grid
-          className={classes.d_flex}
-          item
-          xs={12}
-          sm={12}
-          md={12}
-          justify="center"
-        >
+      <Grid className={classes.d_flex_center} item xs={12} sm={12} md={12}>
+        <Grid className={classes.d_flex_center} item xs={12} sm={12} md={12}>
           {dataPutIntoSearchResul.summary}
         </Grid>
       </Grid>
 
-      <Grid
-        className={classes.d_flex}
-        item
-        xs={12}
-        sm={12}
-        md={12}
-        justify="center"
-      >
+      <Grid className={classes.d_flex_center} item xs={12} sm={12} md={12}>
         {dataPutIntoSearchResul.temperature
-          ? dataPutIntoSearchResul.temperature + "°C"
+          ? dataPutIntoSearchResul.temperature + " °C "
           : ""}
       </Grid>
     </Grid>

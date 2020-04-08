@@ -24,7 +24,7 @@ const styles = (theme) => ({
   },
 });
 
-let log = console.log;
+//let log = console.log;
 
 class Home extends Component {
   state = {

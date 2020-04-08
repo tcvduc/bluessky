@@ -61,6 +61,9 @@ const styles = (theme) => ({
       width: "50vw",
     },
     [theme.breakpoints.up("md")]: {
+      width: "35vw",
+    },
+    [theme.breakpoints.up("lg")]: {
       width: "27vw",
     },
   },
@@ -85,6 +88,9 @@ const styles = (theme) => ({
       width: "50vw",
     },
     [theme.breakpoints.up("md")]: {
+      width: "35vw",
+    },
+    [theme.breakpoints.up("lg")]: {
       width: "27vw",
     },
   },
@@ -123,7 +129,7 @@ class WeatherApp extends Component {
   render() {
     const { classes } = this.props;
     const { pathname } = this.props.location;
-    console.log(pathname);
+    //console.log(pathname);
 
     // handle path background weatherapp component
     const checkPathWeatherApp = (path) => {
@@ -145,11 +151,11 @@ class WeatherApp extends Component {
     };
 
     return (
-      <Container className={classes.container_pure_css}>
+      <Container className={classes.container_pure_css} maxWidth="xl">
         <div className={checkPathBehindBgWeatherApp(pathname)}></div>
         <Grid
           container
-          wrap={true}
+          wrap="wrap"
           spacing={5}
           className={checkPathWeatherApp(pathname)}
         >
