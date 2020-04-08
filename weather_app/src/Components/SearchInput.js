@@ -36,7 +36,7 @@ class SearchInput extends Component {
 
     this.props.isLoading(true);
 
-    Axios.get(`http://localhost:5000/api/weather?search=${keyword}`)
+    Axios.get(`https://bluessky.herokuapp.com/api/weather?search=${keyword}`)
       .then((data) => {
         // log(data.data);
         this.props.client_result(data.data);
