@@ -8,7 +8,7 @@ let log = console.log;
 
 app.use(express.static(path.join(__dirname, "../build")));
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
@@ -25,7 +25,7 @@ app.get("/home", (req, res) => {
 
 app.get("/api/weather", (req, res) => {
   if (!req.query.search) {
-    return res.send("Loi roi");
+    return res.send("Lỗi!");
   }
 
   const { search } = req.query;
@@ -33,14 +33,14 @@ app.get("/api/weather", (req, res) => {
     if (geo_err) {
       return res.send(geo_err);
     }
-    const geo_data = geo_res.features.map(feature => {
+    const geo_data = geo_res.features.map((feature) => {
       return {
         place_name: feature.place_name,
         latitude: feature.center[1],
-        longitude: feature.center[0]
+        longitude: feature.center[0],
       };
     });
-    //res.send(data[0]);
+
     const { latitude, longitude, place_name } = geo_data[0];
     forecast(latitude, longitude, (fore_err, fore_res) => {
       if (fore_err) {
@@ -50,9 +50,9 @@ app.get("/api/weather", (req, res) => {
       const result = {
         place_name: place_name,
         summary: fore_data.currently.summary,
-        temperature: fore_data.currently.temperature
+        temperature: fore_data.currently.temperature,
       };
-      res.render(path.join(__dirname, "../build", "index.html"), result);
+      res.send(result);
     });
   });
 });

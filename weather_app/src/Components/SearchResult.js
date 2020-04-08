@@ -1,11 +1,16 @@
 import React from "react";
-import { makeStyles, Grid } from "@material-ui/core";
+import { makeStyles, Grid, LinearProgress, Box } from "@material-ui/core";
 import "./../sass/svg.css";
-
+import { connect } from "react-redux";
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    width: "70%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
   resultBg: {
-    backgroundColor: "lightblue",
+    backgroundColor: "transparent",
     width: "100%",
     height: "100%",
     padding: "0 20px",
@@ -27,12 +32,47 @@ function RealTimeClock() {
   return { hour, minute, second };
 }
 
+let log = console.log;
+
 function SearchResult(props) {
   const classes = useStyles();
 
   let timer = RealTimeClock();
 
-  return (
+  const { dataSearch, isLoading } = props;
+  const dataIndex = dataSearch.length - 1;
+  const dataPutIntoSearchResul = dataSearch[dataIndex];
+
+  //log(dataPutIntoSearchResul);
+  log(isLoading);
+
+  const [completed, setCompleted] = React.useState(0);
+  React.useEffect(() => {
+    function progress() {
+      setCompleted((oldCompleted) => {
+        if (oldCompleted === 100) {
+          return 0;
+        }
+        const diff = Math.random() * 15; // không biết lấy độ chính xác của axios
+        return Math.min(oldCompleted + diff, 100);
+      });
+    }
+
+    const timer = setInterval(progress, 500);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  return isLoading ? (
+    <Box justifyContent="center" alignItems="center" className={classes.root}>
+      <LinearProgress
+        variant="determinate"
+        value={completed}
+        color="secondary"
+      />
+    </Box>
+  ) : (
     <Grid container className={classes.resultBg} spacing={3}>
       <Grid className={classes.d_flex} item md={6}>
         <div id="time_icon" className={classes.mr_10}>
@@ -57,19 +97,9 @@ function SearchResult(props) {
         md={6}
         justify="flex-end"
       >
-        place
-      </Grid>
-
-      <Grid
-        className={classes.d_flex}
-        item
-        xs={12}
-        sm={12}
-        md={12}
-        justify="center"
-      >
         icon
       </Grid>
+
       <Grid
         className={classes.d_flex}
         item
@@ -78,7 +108,7 @@ function SearchResult(props) {
         md={12}
         justify="center"
       >
-        summary
+        {dataPutIntoSearchResul.place_name}
       </Grid>
       <Grid
         className={classes.d_flex}
@@ -88,41 +118,41 @@ function SearchResult(props) {
         md={12}
         justify="center"
       >
-        temperature
+        <Grid
+          className={classes.d_flex}
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          justify="center"
+        >
+          {dataPutIntoSearchResul.summary}
+        </Grid>
       </Grid>
 
       <Grid
         className={classes.d_flex}
         item
-        xs={6}
-        sm={6}
-        md={6}
-        justify="flex-start"
-      >
-        H temp
-      </Grid>
-      <Grid
-        className={classes.d_flex}
-        item
-        xs={6}
-        sm={6}
-        md={6}
-        justify="flex-end"
-      >
-        L temp
-      </Grid>
-      <Grid
-        className={classes.d_flex}
         xs={12}
         sm={12}
-        item
         md={12}
         justify="center"
       >
-        textttt
+        {dataPutIntoSearchResul.temperature
+          ? dataPutIntoSearchResul.temperature + "°C"
+          : ""}
       </Grid>
     </Grid>
   );
 }
 
-export default SearchResult;
+const mapStateToProps = (state) => {
+  return {
+    dataSearch: state.clientResult,
+    isLoading: state.isLoading,
+  };
+};
+
+const mapDispatchToProps = null;
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);

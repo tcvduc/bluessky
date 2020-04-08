@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-
-import { Box } from "@material-ui/core";
+import { Box, LinearProgress } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-
 import SearchInput from "./SearchInput";
 import SearchResult from "./SearchResult";
 
@@ -26,6 +24,8 @@ const styles = (theme) => ({
   },
 });
 
+let log = console.log;
+
 class Home extends Component {
   state = {
     clientInput: "",
@@ -35,6 +35,8 @@ class Home extends Component {
 
   render() {
     const { classes } = this.props;
+    // log(this.state.foreData);
+
     return (
       <Box
         display="flex"
@@ -60,7 +62,14 @@ class Home extends Component {
           alignItems="center"
           id="result"
         >
-          <SearchResult />
+          {this.state.isLoading ? (
+            <LinearProgress
+              variant="determinate"
+              value={this.state.completed}
+            />
+          ) : (
+            <SearchResult />
+          )}
         </Box>
       </Box>
     );
