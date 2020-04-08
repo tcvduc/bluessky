@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles, Grid } from "@material-ui/core";
 import "./../sass/svg.css";
 
-let log = console.log;
 const useStyles = makeStyles((theme) => ({
   root: {},
   resultBg: {
@@ -39,7 +38,6 @@ function SearchResult(props) {
         <div id="time_icon" className={classes.mr_10}>
           <svg
             className="time_icon_css"
-            enable-background="new 0 0 443.294 443.294"
             height="20"
             viewBox="0 0 443.294 443.294"
             width="20"
@@ -51,27 +49,76 @@ function SearchResult(props) {
         </div>
         <div id="real-time-clock">{timer.hour + ":" + timer.minute}</div>
       </Grid>
-      <Grid className={classes.d_flex} item md={6} justify="flex-end">
+      <Grid
+        className={classes.d_flex}
+        item
+        xs={6}
+        sm={6}
+        md={6}
+        justify="flex-end"
+      >
         place
       </Grid>
 
-      <Grid className={classes.d_flex} item md={12} justify="center">
+      <Grid
+        className={classes.d_flex}
+        item
+        xs={12}
+        sm={12}
+        md={12}
+        justify="center"
+      >
         icon
       </Grid>
-      <Grid className={classes.d_flex} item md={12} justify="center">
+      <Grid
+        className={classes.d_flex}
+        item
+        xs={12}
+        sm={12}
+        md={12}
+        justify="center"
+      >
         summary
       </Grid>
-      <Grid className={classes.d_flex} item md={12} justify="center">
+      <Grid
+        className={classes.d_flex}
+        item
+        xs={12}
+        sm={12}
+        md={12}
+        justify="center"
+      >
         temperature
       </Grid>
 
-      <Grid className={classes.d_flex} item md={6} justify="flex-start">
+      <Grid
+        className={classes.d_flex}
+        item
+        xs={6}
+        sm={6}
+        md={6}
+        justify="flex-start"
+      >
         H temp
       </Grid>
-      <Grid className={classes.d_flex} item md={6} justify="flex-end">
+      <Grid
+        className={classes.d_flex}
+        item
+        xs={6}
+        sm={6}
+        md={6}
+        justify="flex-end"
+      >
         L temp
       </Grid>
-      <Grid className={classes.d_flex} item md={12} justify="center">
+      <Grid
+        className={classes.d_flex}
+        xs={12}
+        sm={12}
+        item
+        md={12}
+        justify="center"
+      >
         textttt
       </Grid>
     </Grid>

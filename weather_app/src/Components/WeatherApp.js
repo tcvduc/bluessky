@@ -5,7 +5,7 @@ import { withStyles, Grid, Container } from "@material-ui/core";
 import HomeBackGround from "./../assets/image/8k2.jpg";
 import socialBackGround from "./../assets/gif/8k.gif";
 import { withRouter } from "react-router";
-import Footer from "./Footer";
+
 const styles = (theme) => ({
   root: {},
   behindHomeBg: {
@@ -54,6 +54,15 @@ const styles = (theme) => ({
     top: "53%",
     left: "52%",
     transform: "translate(-50%,-50%)",
+    [theme.breakpoints.up("xs")]: {
+      width: "70vw",
+    },
+    [theme.breakpoints.up("sm")]: {
+      width: "50vw",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "27vw",
+    },
   },
   socialComponentBg: {
     position: "absolute",
@@ -69,6 +78,15 @@ const styles = (theme) => ({
     top: "53%",
     left: "52%",
     transform: "translate(-50%,-50%)",
+    [theme.breakpoints.up("xs")]: {
+      width: "70vw",
+    },
+    [theme.breakpoints.up("sm")]: {
+      width: "50vw",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "27vw",
+    },
   },
   container_pure_css: {
     padding: "0!important",
@@ -81,6 +99,23 @@ const styles = (theme) => ({
   },
   bottom_place: {
     height: "85%",
+  },
+  "& @media (max-width:576px)": {
+    homeComponentBg: {
+      position: "absolute",
+      borderRadius: "5px",
+      backgroundImage: `url(${HomeBackGround})`,
+      backgroundPosition: "initial",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      height: "80vh",
+      width: "57vw",
+      boxShadow: "0px 1px 20px 0px black",
+      zIndex: 2,
+      top: "53%",
+      left: "52%",
+      transform: "translate(-50%,-50%)",
+    },
   },
 });
 
@@ -110,11 +145,11 @@ class WeatherApp extends Component {
     };
 
     return (
-      <Container maxWidth="100vw" className={classes.container_pure_css}>
+      <Container className={classes.container_pure_css}>
         <div className={checkPathBehindBgWeatherApp(pathname)}></div>
         <Grid
           container
-          wrap
+          wrap={true}
           spacing={5}
           className={checkPathWeatherApp(pathname)}
         >
@@ -139,9 +174,6 @@ class WeatherApp extends Component {
             className={classes.pt_0 + " " + classes.bottom_place}
           >
             <Main></Main>
-          </Grid>
-          <Grid item md={12}>
-            <Footer />
           </Grid>
         </Grid>
       </Container>

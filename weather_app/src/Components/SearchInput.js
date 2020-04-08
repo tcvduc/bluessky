@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
-let log = console.log;
-
 const styles = (theme) => ({
   root: {},
   w_100: {

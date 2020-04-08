@@ -2,7 +2,9 @@ import React from "react";
 import { withStyles, AppBar, Grid, Button, Link, Box } from "@material-ui/core";
 
 const styles = (theme) => ({
-  root: {},
+  root: {
+    backgroundColor: "transparent",
+  },
   no_border_bottom: {
     borderBottom: "none",
   },
@@ -23,6 +25,13 @@ const styles = (theme) => ({
   button_pure_css: {
     color: "white",
     textDecoration: "none",
+    "& a": {
+      transition: "0.5s",
+      transformOrigin: "right",
+    },
+    "& a:hover": {
+      textDecoration: "none",
+    },
   },
   link_pure_css: {
     color: "white",
@@ -30,19 +39,10 @@ const styles = (theme) => ({
   },
 });
 
-function createData(id, name, password) {
-  return { id, name, password };
-}
-
-const rows = [
-  createData(1, "cm", "12"),
-  createData(2, "ch", "22"),
-  createData(3, "cbx", "33"),
-];
-
 class Footer extends React.Component {
   render() {
-    const classes = this.props;
+    const { classes } = this.props;
+
     return (
       <footer>
         <Box className={classes.root}>

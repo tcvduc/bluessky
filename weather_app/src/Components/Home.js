@@ -26,16 +26,12 @@ const styles = (theme) => ({
   },
 });
 
-let log = console.log;
-
 class Home extends Component {
   state = {
     clientInput: "",
     geoData: ["ok"],
     foreData: [],
   };
-
-  componentDidMount() {}
 
   render() {
     const { classes } = this.props;
