@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles, Grid, LinearProgress, Box } from "@material-ui/core";
 import "./../sass/svg.css";
 import { connect } from "react-redux";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "70%",
@@ -23,7 +24,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
   },
-  time_icon_css: {},
+  time_and_icon: {
+    alignItems: "center",
+  },
+
   mr_10: {
     marginRight: 10,
   },
@@ -51,6 +55,46 @@ function SearchResult(props) {
   //log(dataPutIntoSearchResul);
   //log(isLoading);
 
+  const TimeElement = () => {
+    return (
+      <Grid
+        className={classes.d_flex_center + " " + classes.time_and_icon}
+        item
+        md={6}
+      >
+        <div id="time_icon" className={classes.mr_10}>
+          <svg
+            className="time_icon_css"
+            height="20"
+            viewBox="0 0 443.294 443.294"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="m221.647 0c-122.214 0-221.647 99.433-221.647 221.647s99.433 221.647 221.647 221.647 221.647-99.433 221.647-221.647-99.433-221.647-221.647-221.647zm0 415.588c-106.941 0-193.941-87-193.941-193.941s87-193.941 193.941-193.941 193.941 87 193.941 193.941-87 193.941-193.941 193.941z" />
+            <path d="m235.5 83.118h-27.706v144.265l87.176 87.176 19.589-19.589-79.059-79.059z" />
+          </svg>
+        </div>
+        <div id="real-time-clock">
+          {timer.hour + ":" + timer.minute + ":" + timer.second}
+        </div>
+      </Grid>
+    );
+  };
+
+  const IconElement = () => {
+    return (
+      <Grid
+        className={classes.d_flex_center + " " + classes.time_and_icon}
+        item
+        xs={6}
+        sm={6}
+        md={6}
+      >
+        icon
+      </Grid>
+    );
+  };
+
   const [completed, setCompleted] = React.useState(0);
   React.useEffect(() => {
     function progress() {
@@ -71,32 +115,13 @@ function SearchResult(props) {
 
   return isLoading ? (
     <Box justifyContent="center" alignItems="center" className={classes.root}>
-      <LinearProgress
-        variant="determinate"
-        value={completed}
-        color="secondary"
-      />
+      <LinearProgress variant="determinate" value={completed} color="primary" />
     </Box>
   ) : (
     <Grid container className={classes.resultBg} spacing={3}>
-      <Grid className={classes.d_flex_center} item md={6}>
-        <div id="time_icon" className={classes.mr_10}>
-          <svg
-            className="time_icon_css"
-            height="20"
-            viewBox="0 0 443.294 443.294"
-            width="20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="m221.647 0c-122.214 0-221.647 99.433-221.647 221.647s99.433 221.647 221.647 221.647 221.647-99.433 221.647-221.647-99.433-221.647-221.647-221.647zm0 415.588c-106.941 0-193.941-87-193.941-193.941s87-193.941 193.941-193.941 193.941 87 193.941 193.941-87 193.941-193.941 193.941z" />
-            <path d="m235.5 83.118h-27.706v144.265l87.176 87.176 19.589-19.589-79.059-79.059z" />
-          </svg>
-        </div>
-        <div id="real-time-clock">{timer.hour + ":" + timer.minute}</div>
-      </Grid>
-      <Grid className={classes.d_flex_center} item xs={6} sm={6} md={6}>
-        icon
-      </Grid>
+      {/* Tính loading xong mới hiện 2 cái JSX này nhưng kh được */}
+      {isLoading ? "" : <TimeElement />}
+      {isLoading ? "" : <IconElement />}
 
       <Grid className={classes.d_flex_center} item xs={12} sm={12} md={12}>
         {dataPutIntoSearchResul.place_name}

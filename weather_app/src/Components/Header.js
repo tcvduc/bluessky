@@ -3,9 +3,7 @@ import { makeStyles, AppBar, Box, Grid, Button } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
+  root: {},
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -19,6 +17,8 @@ const useStyles = makeStyles((theme) => ({
   button_pure_css: {
     color: "white",
     textDecoration: "none",
+    fontSize: "17px",
+    padding: 15,
   },
   link_pure_css: {
     color: "white",

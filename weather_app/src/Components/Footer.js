@@ -28,6 +28,8 @@ const styles = (theme) => ({
     "& a": {
       transition: "0.5s",
       transformOrigin: "right",
+      fontSize: "17px",
+      padding: 10,
     },
     "& a:hover": {
       textDecoration: "none",

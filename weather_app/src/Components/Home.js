@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Box, LinearProgress } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import SearchInput from "./SearchInput";
 import SearchResult from "./SearchResult";
 
-const styles = (theme) => ({
+const styles = () => ({
   root: {},
   home_background: {
     height: "100%",
@@ -19,7 +19,6 @@ const styles = (theme) => ({
   result_box: {
     height: "90%",
   },
-
 });
 
 //let log = console.log;
@@ -50,7 +49,7 @@ class Home extends Component {
           justifyContent="center"
           alignItems="flex-end"
         >
-          <SearchInput   />
+          <SearchInput />
         </Box>
         <Box
           className={classes.cl_white + " " + classes.result_box}
@@ -60,14 +59,7 @@ class Home extends Component {
           alignItems="center"
           id="result"
         >
-          {this.state.isLoading ? (
-            <LinearProgress
-              variant="determinate"
-              value={this.state.completed}
-            />
-          ) : (
-            <SearchResult />
-          )}
+          <SearchResult />
         </Box>
       </Box>
     );

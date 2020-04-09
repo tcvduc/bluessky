@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TextField, FormControl, InputLabel, Input } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import Axios from "axios";
@@ -81,6 +81,12 @@ class SearchInput extends Component {
       });
   };
 
+  renderSuggestion = () => {
+    const newData = [...this.state.clientInput];
+    log(newData);
+    return <div>Hello</div>;
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -93,11 +99,14 @@ class SearchInput extends Component {
         onSubmit={this.handleSubmit}
       >
         <CssTextField
+          autoComplete="ok"
           className={classes.margin}
+          onChange={this.handleChange}
           id="custom_input"
           label="Place"
           fullWidth={true}
         />
+        {this.renderSuggestion}
       </form>
     );
   }
