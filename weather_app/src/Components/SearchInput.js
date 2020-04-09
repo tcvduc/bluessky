@@ -1,14 +1,48 @@
 import React, { Component } from "react";
-import { TextField } from "@material-ui/core";
+import { TextField, FormControl, InputLabel, Input } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import Axios from "axios";
 import { connect } from "react-redux";
 
+// custom input
+
+const CssTextField = withStyles({
+  root: {
+    "& label": {
+      color: "hsla(0, 0%, 100%, 0.774)",
+    },
+    "& label.Mui-focused": {
+      color: "hsla(0, 0%, 100%, 1)",
+    },
+    "& .MuiInput-underline:before": {
+      borderBottomColor: "hsla(0, 0%, 100%, 0.774)",
+    },
+    "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+      borderBottomColor: "hsla(0, 0%, 100%, 0.774)",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "hsla(0, 0%, 100%, 1)",
+    },
+  },
+})(TextField);
+
 const styles = (theme) => ({
   root: {},
   w_100: {
     width: "100%!important",
+  },
+  textField_color: {
+    color: "#ffffff",
+  },
+  cl_green: {
+    color: "lightgreen",
+  },
+  colorSecondary: {
+    color: "lightgreen",
+  },
+  underline: {
+    color: "red",
   },
 });
 
@@ -49,6 +83,7 @@ class SearchInput extends Component {
 
   render() {
     const { classes } = this.props;
+
     return (
       <form
         action="/search"
@@ -57,13 +92,11 @@ class SearchInput extends Component {
         id="unique_form"
         onSubmit={this.handleSubmit}
       >
-        <TextField
-          name="clientInput"
-          onChange={this.handleChange}
-          className={classes.textField_color}
+        <CssTextField
+          className={classes.margin}
+          id="custom_input"
           label="Place"
           fullWidth={true}
-          inputProps={classes.cl_white}
         />
       </form>
     );

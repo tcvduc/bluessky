@@ -19,9 +19,7 @@ const styles = (theme) => ({
   result_box: {
     height: "90%",
   },
-  textField_color: {
-    color: "#ffffff",
-  },
+
 });
 
 //let log = console.log;
@@ -52,7 +50,7 @@ class Home extends Component {
           justifyContent="center"
           alignItems="flex-end"
         >
-          <SearchInput />
+          <SearchInput   />
         </Box>
         <Box
           className={classes.cl_white + " " + classes.result_box}

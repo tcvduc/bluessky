@@ -1,6 +1,6 @@
 import React from "react";
 import WeatherApp from "./Components/WeatherApp";
-import "./App.css";
+import "./Global.css";
 import { BrowserRouter } from "react-router-dom";
 import { createMuiTheme } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
@@ -14,7 +14,13 @@ const theme = createMuiTheme({
       main: "hsla(0, 0%, 100%, 0.884);",
     },
     secondary: {
-      main: "hsla(0, 0%, 100%, 0.5);",
+      main: "#f8b5a0",
+    },
+    info: {
+      main: "#2196f3",
+    },
+    error: {
+      main: "#f44336",
     },
   },
 });

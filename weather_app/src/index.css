@@ -12,7 +12,6 @@ code {
     monospace;
 }
 
-.white {
-  color: hsla(0, 0%, 100%, 0.884);
-  color: rgba(77, 145, 254, 0.173);
+.color {
+  color: hsla(0, 0%, 100%, 1);
 }

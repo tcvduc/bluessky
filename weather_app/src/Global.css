@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+  font-family: "Baloo Tammudu 2", cursive, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+input {
+  color: hsla(0, 0%, 100%, 1) !important;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+}
