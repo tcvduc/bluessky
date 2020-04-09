@@ -36,11 +36,11 @@ function Social(props) {
   const classes = useStyles();
 
   const handleFBClick = () => {
-    return (window.location.href = "https://www.facebook.com");
+    return (window.location.href = "https://www.facebook.com/PanAngelo.99/");
   };
 
   const handleINSClick = () => {
-    return (window.location.href = "https://instagram.com");
+    return (window.location.href = "https://www.instagram.com/aintducc/");
   };
   return (
     <Grid>
