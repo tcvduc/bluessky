@@ -1,7 +1,7 @@
 const express = require("express");
 const User = require("./../models/user");
 const Userrouter = new express.Router();
-
+const auth = require("./../middleware/auth");
 let log = console.log;
 
 // login - post
@@ -17,11 +17,26 @@ Userrouter.post("/users/login", async (req, res) => {
 });
 
 // logout - post
-Userrouter.post("/users/logout", async (req, res) => {
-  log(req.user);
+Userrouter.post("/users/logout", auth, async (req, res) => {
   try {
+    req.user.tokens = req.user.tokens.filter((token) => {
+      return token.token !== req.token;
+    });
+    await req.user.save();
+    res.send("Logout success");
   } catch (error) {
     res.status(500).send(error.message);
+  }
+});
+
+// logout all device
+Userrouter.post("/users/logoutalldevice", auth, async (req, res) => {
+  try {
+    req.user.tokens = [];
+    await req.user.save();
+    res.send("Logout all device!");
+  } catch (err) {
+    res.status(500).send(err.message);
   }
 });
 
@@ -48,11 +63,11 @@ Userrouter.get("/users", async (req, res) => {
   }
 });
 
-// user read their self - user infor
-// router.get("/users/me", async (req, res) => {
-//   log(req.user);
-//   res.send(req.user);
-// });
+//user read their self - user infor
+Userrouter.get("/users/me", auth, async (req, res) => {
+  log(req.user);
+  res.send(req.user);
+});
 
 // read user by :id params
 Userrouter.get("/users/:id", async (req, res) => {

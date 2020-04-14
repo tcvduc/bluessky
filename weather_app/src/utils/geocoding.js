@@ -1,7 +1,7 @@
 const request = require("request");
 
 const access_token = `pk.eyJ1IjoiYWludGR1YyIsImEiOiJjazZ5ZmhicG4wc3EyM21xbzR2M2IweGtjIn0.5Al9ddJcfoi7LwEk0ldFWw`;
-
+let log = console.log;
 // const geoCodingUrl =
 //   "http://api.mapbox.com/geocoding/v5/mapbox.places/hochiminh.json?access_token=pk.eyJ1IjoiYWludGR1YyIsImEiOiJjazZ5ZmhicG4wc3EyM21xbzR2M2IweGtjIn0.5Al9ddJcfoi7LwEk0ldFWw";
 
@@ -19,6 +19,8 @@ function geocoding(keywords, callback) {
     } else if (res.body.length === 0) {
       return callback("No result for your key", undefined);
     } else {
+      const data = res.body;
+      log(data);
       return callback(undefined, res.body);
     }
   });

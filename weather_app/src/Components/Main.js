@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import Social from "./Social";
+
 class Main extends Component {
   // routing right there
   render() {
@@ -12,6 +13,7 @@ class Main extends Component {
           <Route exact path="/home" component={Home}></Route>
           <Route exact path="/social" component={Social}></Route>
           <Route path="/api/weather" component={Home}></Route>
+
           <Route>
             <h1>Page not found</h1>
           </Route>

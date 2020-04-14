@@ -70,22 +70,32 @@ class SearchInput extends Component {
 
     this.props.isLoading(true);
 
-    Axios.get(`http://localhost:5000/api/weather?search=${keyword}`)
-      .then((data) => {
-        // log(data.data);
-        this.props.client_result(data.data);
+    Axios.get(`https://bluessky.herokuapp.com/geo_data?search=${keyword}`)
+      .then((datas) => {
+        // log(data.data); -> object includes lat long place
+        const place_Suggestions = datas.data.map((data) => {
+          return data.place_name;
+        });
+        this.props.suggestions(place_Suggestions);
         this.props.isLoading(false);
       })
-      .catch((err) => {
-        log(err);
-      });
+      .catch((err) => log(err));
+
+    // Axios.get(`http://localhost:5000/api/weather?search=${keyword}`)
+    //   .then((data) => {
+    //     // log(data.data);
+    //     this.props.client_result(data.data);
+    //     this.props.isLoading(false);
+    //   })
+    //   .catch((err) => {
+    //     log(err);
+    //   });
   };
 
-  renderSuggestion = () => {
-    const newData = [...this.state.clientInput];
-    log(newData);
-    return <div>Hello</div>;
-  };
+  // renderSuggestion = () => {
+  //   const newData = [...this.state.clientInput];
+  //   //log(newData);
+  // };
 
   render() {
     const { classes } = this.props;
@@ -106,7 +116,6 @@ class SearchInput extends Component {
           label="Place"
           fullWidth={true}
         />
-        {this.renderSuggestion}
       </form>
     );
   }
@@ -126,16 +135,16 @@ const mapDispatchToProps = (dispatch) => {
         payload: value,
       });
     },
-    client_result: (result) => {
-      dispatch({
-        type: "RESULT",
-        payload: result,
-      });
-    },
     isLoading: (isLoading) => {
       dispatch({
         type: "LOADING",
         payload: isLoading,
+      });
+    },
+    suggestions: (suggests) => {
+      dispatch({
+        type: "SUGGESTIONS",
+        payload: suggests,
       });
     },
   };

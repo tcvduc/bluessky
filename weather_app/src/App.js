@@ -30,7 +30,8 @@ const theme = createMuiTheme({
 // init state
 const initState = {
   clientInput: [],
-  clientResult: [""], // bugs - nếu empty thì bị lỗi undefine
+  clientResult: [""], // bugs - nếu empty thì bị lỗi undefine,
+  suggestions: [],
   isLoading: false,
 };
 
@@ -44,18 +45,33 @@ const rootReducer = (state = initState, action) => {
         clientInput: newClientInput,
       };
     }
-    case "RESULT": {
-      const newClientResult = [...state.clientResult, action.payload];
-      return {
-        ...state,
-        clientResult: newClientResult,
-      };
-    }
 
     case "LOADING": {
       return {
         ...state,
         isLoading: action.payload,
+      };
+    }
+
+    case "SUGGESTIONS": {
+      return {
+        ...state,
+        suggestions: action.payload,
+      };
+    }
+
+    case "CLEAR_SUGGESTIONS": {
+      return {
+        ...state,
+        suggestions: [],
+      };
+    }
+
+    case "RESULT": {
+      const newClientResult = [...state.clientResult, action.payload];
+      return {
+        ...state,
+        clientResult: newClientResult,
       };
     }
 

@@ -170,6 +170,7 @@ class WeatherApp extends Component {
           >
             <Header></Header>
           </Grid>
+
           <Grid
             item
             xl={12}
