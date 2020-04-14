@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Box, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchInput from "./SearchInput";

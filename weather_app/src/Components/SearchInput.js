@@ -70,9 +70,12 @@ class SearchInput extends Component {
 
     this.props.isLoading(true);
 
-    Axios.get(`https://bluessky.herokuapp.com/geo_data?search=${keyword}`)
+    Axios.get(
+      `https://bluessky.herokuapp.com/suggests/geo_data?search=${keyword}`
+    )
       .then((datas) => {
         // log(data.data); -> object includes lat long place
+        log(datas);
         const place_Suggestions = datas.data.map((data) => {
           return data.place_name;
         });

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withStyles, LinearProgress, Box } from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
 import { connect } from "react-redux";
 
 import Axios from "axios";
@@ -29,6 +29,7 @@ class Autocomplete extends Component {
     // log(dataSuggestions);
     // log(index);
     const keywords = dataSuggestions[index];
+    log(dataSuggestions);
     Axios.get(`https://bluessky.herokuapp.com/api/weather?search=${keywords}`)
       .then((datas) => {
         this.props.client_result(datas.data);
