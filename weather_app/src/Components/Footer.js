@@ -1,5 +1,6 @@
 import React from "react";
-import { withStyles, AppBar, Grid, Button, Link, Box } from "@material-ui/core";
+import { withStyles, AppBar, Grid, Button, Box } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
   root: {
@@ -41,10 +42,14 @@ const styles = (theme) => ({
   },
 });
 
+let log = console.log;
+
 class Footer extends React.Component {
   render() {
-    const { classes } = this.props;
-
+    const { classes, loginHandle } = this.props;
+    const handleClickLogin = (event) => {
+      loginHandle(event);
+    };
     return (
       <footer>
         <Box className={classes.root}>
@@ -58,8 +63,16 @@ class Footer extends React.Component {
               alignItems="center"
             >
               <Grid item>
-                <Button className={classes.button_pure_css}>
-                  <Link to="/home" className={classes.link_pure_css}>
+                <Button
+                  className={classes.button_pure_css}
+                  onClick={(event) => {
+                    handleClickLogin(event);
+                  }}
+                >
+                  <Link
+                    to="/social/users/login"
+                    className={classes.link_pure_css}
+                  >
                     Login
                   </Link>
                 </Button>

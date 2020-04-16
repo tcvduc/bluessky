@@ -54,8 +54,11 @@ const rootReducer = (state = initState, action) => {
     }
 
     case "SUGGESTIONS": {
+      const clearResult = [""];
+
       return {
         ...state,
+        clientResult: clearResult,
         suggestions: action.payload,
       };
     }

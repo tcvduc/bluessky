@@ -31,6 +31,10 @@ app.use(socialRoute);
 app.use(apiRoute);
 const port = process.env.PORT || 5000;
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./../build", "index.html"));
+});
+
 app.listen(port, () => {
   log(`Server started on port ${port}`);
 });
