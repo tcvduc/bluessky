@@ -2,7 +2,7 @@ const express = require("express");
 const User = require("./../models/user");
 const Userrouter = new express.Router();
 const auth = require("./../middleware/auth");
-let log = console.log;
+// let log = console.log;
 
 // login - post
 Userrouter.post("/users/login", async (req, res) => {
@@ -65,7 +65,7 @@ Userrouter.get("/users", async (req, res) => {
 
 //user read their self - user infor
 Userrouter.get("/users/me", auth, async (req, res) => {
-  log(req.user);
+  // log(req.user);
   res.send(req.user);
 });
 
