@@ -19,3 +19,37 @@ main {
   height: 100%;
   width: 100%;
 }
+
+#special {
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+}
+
+.father {
+  overflow: hidden;
+  position: relative;
+}
+
+/* .father:hover .child-1 {
+  left: 0;
+  transform: translate(-100%, 0);
+}
+.father:hover .child-2 {
+  left: 0;
+} */
+
+.child {
+  position: absolute;
+  transition: 0.5s;
+}
+
+.child-1 {
+  top: 0;
+  left: 30%;
+}
+
+.child-2 {
+  top: 0;
+  left: 100%;
+}

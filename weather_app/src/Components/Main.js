@@ -13,7 +13,7 @@ class Main extends Component {
           <Route exact path="/home" component={Home}></Route>
           <Route exact path="/social" component={Social}></Route>
           <Route exact path="/api/weather" component={Home}></Route>
-          <Route exact path="/social/users/login" component={Social}></Route>
+          <Route exact path="/users/login" component={Social}></Route>
 
           <Route>
             <h1>Page not found</h1>

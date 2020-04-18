@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Button, TextField } from "@material-ui/core";
+import { Grid, Button, TextField, Box } from "@material-ui/core";
 import { withStyles } from "@material-ui/core";
 
 const style = () => ({
@@ -16,7 +16,6 @@ const style = () => ({
     flexWrap: "wrap",
     justifyContent: "center",
     padding: 15,
-    marginBottom: 100,
   },
   mb_20: {
     marginBottom: 20,
@@ -26,6 +25,9 @@ const style = () => ({
   },
   p_10: {
     padding: 10,
+  },
+  p_5: {
+    padding: 5,
   },
 });
 
@@ -60,6 +62,7 @@ const SubmitButton = withStyles((theme) => ({
     color: "white",
     fontFamily: "Baloo Tammudu 2, cursive, sans-serif",
     fontWeight: 400,
+    fontSize: 20,
     textTransform: "initial",
     backgroundColor: "transparent",
     "&:hover": {
@@ -75,30 +78,42 @@ let log = console.log;
 
 class UsersLogin extends React.Component {
   handleUsersLogin = (event) => {
-    event.preventdefault();
-    log(event);
+    event.preventDefault();
+    //  log(event);
   };
+
   render() {
     const { classes } = this.props;
     return (
-      <Grid container id="UsersLogin" className={classes.loginContainer}>
-        <form className={classes.input_group} onSubmit={this.handleUsersLogin}>
-          <UserNameTextField label="Username" className={classes.mb_20} />
-          <UserNameTextField
-            label="Password"
-            className={classes.mb_20}
-            type="password"
-          />
-          <SubmitButton
-            variant="contained"
-            color="primary"
-            className={classes.w_50 + " " + classes.p_10}
-            type="submit"
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        justifyContent="center"
+        alignItems="center"
+        height="50vh"
+      >
+        <Grid container id="UsersLogin" className={classes.loginContainer}>
+          <form
+            className={classes.input_group}
+            onSubmit={this.handleUsersLogin}
           >
-            Login
-          </SubmitButton>
-        </form>
-      </Grid>
+            <UserNameTextField label="Username" className={classes.mb_20} />
+            <UserNameTextField
+              label="Password"
+              className={classes.mb_20}
+              type="password"
+            />
+            <SubmitButton
+              variant="contained"
+              color="primary"
+              className={classes.w_50 + " " + classes.p_5}
+              type="submit"
+            >
+              Login
+            </SubmitButton>
+          </form>
+        </Grid>
+      </Box>
     );
   }
 }

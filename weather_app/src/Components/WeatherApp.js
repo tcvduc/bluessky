@@ -135,7 +135,7 @@ class WeatherApp extends Component {
     const checkPathWeatherApp = (path) => {
       if (path === "/home" || path === "/") {
         return classes.homeComponentBg;
-      } else if (path === "/social" || path === "/social/users/login") {
+      } else if (path === "/social" || path === "/users/login") {
         return classes.socialComponentBg;
       }
       return " ";
@@ -144,7 +144,7 @@ class WeatherApp extends Component {
     const checkPathBehindBgWeatherApp = (path) => {
       if (path === "/home" || path === "/") {
         return classes.behindHomeBg;
-      } else if (path === "/social" || path === "/social/users/login") {
+      } else if (path === "/social" || path === "/users/login") {
         return classes.behindsocialBg;
       }
       return " ";
