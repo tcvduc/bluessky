@@ -30,7 +30,7 @@ class Autocomplete extends Component {
     // log(index);
     const keywords = dataSuggestions[index];
     // log(dataSuggestions);
-    Axios.get(`http://localhost:5000/api/weather?search=${keywords}`)
+    Axios.get(`https://bluessky.herokuapp.com/api/weather?search=${keywords}`)
       .then((datas) => {
         this.props.client_result(datas.data);
       })
