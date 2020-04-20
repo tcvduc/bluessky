@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
 function SearchResult(props) {
   const classes = useStyles();
 
-  const { dataSearch, mapboxLoading } = props;
+  const { dataSearch, darkskyLoading } = props;
   const dataIndex = dataSearch.length - 1;
   const dataPutIntoSearchResul = dataSearch[dataIndex];
 
@@ -88,7 +88,7 @@ function SearchResult(props) {
       >
         <div
           className={classnames(classes.popup_child, classes.popup_child_1, {
-            [classes.popup]: mapboxLoading === false,
+            [classes.popup]: darkskyLoading === false,
           })}
         >
           {dataPutIntoSearchResul.place_name}
@@ -109,7 +109,7 @@ function SearchResult(props) {
             classes.popup_child,
             classes.popup_child_1,
             {
-              [classes.popup]: mapboxLoading === false,
+              [classes.popup]: darkskyLoading === false,
             }
           )}
           item
@@ -132,7 +132,7 @@ function SearchResult(props) {
       >
         <div
           className={classnames(classes.popup_child, classes.popup_child_1, {
-            [classes.popup]: mapboxLoading === false,
+            [classes.popup]: darkskyLoading === false,
           })}
         >
           {dataPutIntoSearchResul.temperature
@@ -147,7 +147,7 @@ function SearchResult(props) {
 const mapStateToProps = (state) => {
   return {
     dataSearch: state.clientResult,
-    mapboxLoading: state.mapboxLoading,
+    darkskyLoading: state.darkskyLoading,
   };
 };
 

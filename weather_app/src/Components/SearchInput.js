@@ -47,7 +47,7 @@ const styles = (theme) => ({
 });
 
 let log = console.log;
-
+// fetch to geocoding API map box
 class SearchInput extends Component {
   state = {
     clientInput: [],

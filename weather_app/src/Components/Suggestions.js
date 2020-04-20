@@ -40,6 +40,7 @@ let log = console.log;
 // Từ hover trồi lên sang tự động trồi lên
 // làm từ css chay sang css trong reactjs sang material ui
 
+// Fetch to darksky API forecast
 class Autocomplete extends Component {
   state = {
     suggestions: [],
@@ -51,14 +52,14 @@ class Autocomplete extends Component {
     // log(index);
     const keywords = dataSuggestions[index];
     // log(dataSuggestions);
-    const devURL = "http://localhost:5000";
-    // const productionsURL = "https://bluessky.herokuapp.com/";
+    // const devURL = "http://localhost:5000";
+    const productionsURL = "https://bluessky.herokuapp.com";
 
-    this.props.mapbox_loading(true);
-    Axios.get(`${devURL}/api/weather?search=${keywords}`)
+    this.props.darksky_loading(true);
+    Axios.get(`${productionsURL}/api/weather?search=${keywords}`)
       .then((datas) => {
         this.props.client_result(datas.data);
-        this.props.mapbox_loading(false);
+        this.props.darksky_loading(false);
       })
       .catch((er) => {
         log(er);
@@ -118,9 +119,9 @@ const mapDispatchToProps = (dispatch) => {
         payload: result,
       });
     },
-    mapbox_loading: (loading) => {
+    darksky_loading: (loading) => {
       dispatch({
-        type: "MAPBOX_LOADING",
+        type: "DARKSKY_LOADING",
         payload: loading,
       });
     },
