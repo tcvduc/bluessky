@@ -33,6 +33,7 @@ const initState = {
   clientResult: [""], // bugs - nếu empty thì bị lỗi undefine,
   suggestions: [],
   isLoading: false,
+  mapboxLoading: false,
 };
 
 // root Reducer
@@ -50,6 +51,13 @@ const rootReducer = (state = initState, action) => {
       return {
         ...state,
         isLoading: action.payload,
+      };
+    }
+
+    case "MAPBOX_LOADING": {
+      return {
+        ...state,
+        mapboxLoading: action.payload,
       };
     }
 

@@ -31,6 +31,7 @@ main {
   position: relative;
 }
 
+/* slider effect */
 /* .father:hover .child-1 {
   left: 0;
   transform: translate(-100%, 0);
@@ -39,7 +40,7 @@ main {
   left: 0;
 } */
 
-.child {
+/* .child {
   position: absolute;
   transition: 0.5s;
 }
@@ -52,4 +53,35 @@ main {
 .child-2 {
   top: 0;
   left: 100%;
+} */
+
+/* popup effect */
+
+.popup_father {
+  background-color: transparent;
+  width: 100%;
+  overflow: hidden;
+}
+
+.popup_father:hover .popup_child-1 {
+  transform: translate(0, 0) rotate(0);
+}
+
+.popup_child {
+  background-color: transparent;
+  animation: popup 1s forwards;
+  transition: 0.5s;
+}
+
+.popup_child-1 {
+  transform: translate(0, 100%) rotate(6deg);
+}
+
+@keyframes popup {
+  from {
+    transform: translate(0, 100%) rotate(6deg);
+  }
+  to {
+    transform: translate(0, 0) rotate(0);
+  }
 }

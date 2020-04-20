@@ -70,9 +70,13 @@ class SearchInput extends Component {
 
     this.props.isLoading(true);
 
-    Axios.get(
-      `https://bluessky.herokuapp.com/suggests/geo_data?search=${keyword}`
-    )
+    // const { location } = this.props;
+
+    // location.search = keyword;
+    //  log(location);
+    const devURL = "http://localhost:5000";
+    //const productionsURL = "https://bluessky.herokuapp.com";
+    Axios.get(`${devURL}/suggests/geo_data?search=${keyword}`)
       .then((datas) => {
         // log(data.data); -> object includes lat long place
         //  log(datas);
@@ -138,6 +142,7 @@ const mapDispatchToProps = (dispatch) => {
         payload: value,
       });
     },
+    // Tận dụng isloading làm popup effect
     isLoading: (isLoading) => {
       dispatch({
         type: "LOADING",

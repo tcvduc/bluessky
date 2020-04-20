@@ -10,7 +10,7 @@ function geocoding(keywords, callback) {
 
   const geoCodingUrl = `http://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
     keywords
-  )}.json?access_token=${access_token}&language=vi&limit=5`;
+  )}.json?access_token=${access_token}&language=vi&limit=4`;
 
   // let data = null; // Không thể dùng kiểu này để return vì bất đồng bộ
   request(geoCodingUrl, { json: true }, (err, res) => {

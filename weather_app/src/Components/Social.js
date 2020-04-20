@@ -46,7 +46,8 @@ const style = (theme) => ({
   },
   child_1: {
     top: 0,
-    left: "30%",
+    left: "50%",
+    transform: "translate(-50%, 0)",
   },
   child_2: {
     top: 0,
