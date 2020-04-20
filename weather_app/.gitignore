@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /testEffectCSS
+/ask.txt
 
 # testing
 /coverage
