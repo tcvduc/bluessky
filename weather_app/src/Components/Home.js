@@ -48,6 +48,7 @@ const usestyles = makeStyles((theme) => ({
     marginRight: 10,
   },
   homeContent: {
+    overflow: "auto",
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",

@@ -15,6 +15,9 @@ const style = (theme) => ({
       cursor: "pointer",
     },
   },
+  mb_20: {
+    marginBottom: 20,
+  },
 
   // popup effect
   popup_father: {
@@ -76,7 +79,10 @@ class Autocomplete extends Component {
       <div id="suggestions" className={classes.root}>
         {this.props.suggestions.map((suggest, index) => {
           return (
-            <div key={index} className={classes.popup_father}>
+            <div
+              key={index}
+              className={classnames(classes.mb_20, classes.popup_father)}
+            >
               <li
                 className={classnames(
                   classes.popup_child,

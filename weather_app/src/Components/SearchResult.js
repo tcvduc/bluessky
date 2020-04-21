@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
   linear: {
     width: "100%",
   },
+  place_name_css: {
+    textAlign: "center",
+  },
   // popup effect
   popup_father: {
     backgroundColor: "transparent",
@@ -78,13 +81,18 @@ function SearchResult(props) {
   return (
     <Grid container className={classes.resultBg} spacing={3}>
       <Grid
-        className={classnames(classes.d_flex_center, classes.popup_father)}
+        className={classnames(
+          classes.d_flex_center,
+          classes.place_name_css,
+          classes.popup_father
+        )}
         item
         xs={12}
         sm={12}
         md={12}
         lg={12}
         xl={12}
+        id="place_name"
       >
         <div
           className={classnames(classes.popup_child, classes.popup_child_1, {
@@ -102,6 +110,7 @@ function SearchResult(props) {
         md={12}
         lg={12}
         xl={12}
+        id="summary"
       >
         <Grid
           className={classnames(
@@ -129,6 +138,7 @@ function SearchResult(props) {
         md={12}
         lg={12}
         xl={12}
+        id="temperature"
       >
         <div
           className={classnames(classes.popup_child, classes.popup_child_1, {
