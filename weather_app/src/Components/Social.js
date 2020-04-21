@@ -2,8 +2,9 @@ import React from "react";
 import { Box, withStyles, Grid } from "@material-ui/core";
 import "./../sass/svg.css";
 import Footer from "./Footer";
-import { Link, withRouter, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import UsersLogin from "./Users/UsersLogin";
+import UsersSignup from "./Users/UsersSignup";
 import SocialMedia from "./SocialMedia";
 import classnames from "classnames";
 const style = (theme) => ({
@@ -41,6 +42,7 @@ const style = (theme) => ({
     position: "relative",
   },
   child: {
+    width: "100%",
     position: "absolute",
     transition: "0.5s",
   },
@@ -48,23 +50,36 @@ const style = (theme) => ({
     top: 0,
     left: "50%",
     transform: "translate(-50%, 0)",
+    transition: "0.7s",
   },
   child_2: {
     top: 0,
     left: "100%",
   },
-  hideSocialMedia: {
+  child_3: {
+    top: 0,
+    left: "-100%",
+  },
+  hideSocialMedia_login: {
     left: 0,
     transform: "translate(-100%, 0)",
+  },
+  hideSocialMedia_signup: {
+    right: 0,
+    transform: "translate(100%, 0)",
   },
   showUsersLogin: {
     left: 0,
   },
+  showUsersSignup: {
+    left: 0,
+  },
 });
 
-let log = console.log;
+// let log = console.log;
 
 class Social extends React.Component {
+  // login
   loginHandle = (event) => {
     // log("footer is touching social");
     const { location } = this.props;
@@ -83,16 +98,41 @@ class Social extends React.Component {
     }
     // return true;
   };
-  hideSocialMedia = () => {
-    const { location } = this.props;
-    if (location.pathname !== "/social") {
-      return true;
+
+  // signup
+  signupHandle = () => {
+    // log("footer touching social");
+  };
+
+  hideSocialMediaWhenLoginClick = () => {
+    if (this.showUsersLogin() === true) {
+      const { location } = this.props;
+      if (location.pathname !== "/social") {
+        return true;
+      }
+      return false;
     }
-    return false;
+  };
+
+  hideSocialMediaWhenSignupClick = () => {
+    if (this.showUsersSignup() === true) {
+      const { location } = this.props;
+      if (location.pathname !== "/social") {
+        return true;
+      }
+      return false;
+    }
   };
   showUsersLogin = () => {
     const { location } = this.props;
     if (location.pathname === "/users/login") {
+      return true;
+    }
+    return false;
+  };
+  showUsersSignup = () => {
+    const { location } = this.props;
+    if (location.pathname === "/users/signup") {
       return true;
     }
     return false;
@@ -114,26 +154,39 @@ class Social extends React.Component {
             alignItems="center"
             height="50vh"
           >
-            <div id="special" className={classes.father}>
+            <div id="slider" className={classes.father}>
               <div
-                className={classnames(classes.child + " " + classes.child_1, {
-                  [classes.hideSocialMedia]: this.hideSocialMedia() === true,
+                className={classnames(classes.child, classes.child_1, {
+                  [classes.hideSocialMedia_login]:
+                    this.hideSocialMediaWhenLoginClick() === true,
+                  [classes.hideSocialMedia_signup]:
+                    this.hideSocialMediaWhenSignupClick() === true,
                 })}
               >
                 <SocialMedia />
               </div>
               <div
-                className={classnames(classes.child + " " + classes.child_2, {
+                className={classnames(classes.child, classes.child_2, {
                   [classes.showUsersLogin]: this.showUsersLogin() === true,
                 })}
               >
                 <UsersLogin />
               </div>
+              <div
+                className={classnames(classes.child, classes.child_3, {
+                  [classes.showUsersSignup]: this.showUsersSignup() === true,
+                })}
+              >
+                <UsersSignup />
+              </div>
             </div>
           </Box>
         </Grid>
         <Grid item className={classes.footer_coponent_css}>
-          <Footer loginHandle={this.loginHandle} />
+          <Footer
+            loginHandle={this.loginHandle}
+            signupHandle={this.signupHandle}
+          />
         </Grid>
       </Grid>
     );

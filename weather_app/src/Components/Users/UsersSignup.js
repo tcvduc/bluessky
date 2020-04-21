@@ -1,10 +1,9 @@
-import React from "react";
-import { Grid, Button, TextField, Box } from "@material-ui/core";
-import { withStyles } from "@material-ui/core";
+import React, { Component } from "react";
+import { withStyles, Box, Grid, Button, TextField } from "@material-ui/core";
 
 const style = () => ({
   root: {},
-  loginContainer: {
+  signupContainer: {
     height: "100%",
     width: "100%",
     display: "flex",
@@ -13,7 +12,7 @@ const style = () => ({
   },
   input_group: {
     display: "flex",
-    flexWrap: "wrap",
+    flexDirection: "column",
     justifyContent: "center",
     padding: 15,
   },
@@ -31,7 +30,7 @@ const style = () => ({
   },
 });
 
-// Custom text field
+// custom text field
 const UserTextField = withStyles({
   root: {
     "& label": {
@@ -75,43 +74,47 @@ const SubmitButton = withStyles((theme) => ({
     },
   },
 }))(Button);
-
 // let log = console.log;
-
-class UsersLogin extends React.Component {
-  handleUsersLogin = (event) => {
+class UsersSignup extends Component {
+  handleSubmitUsersSignup = (event) => {
     event.preventDefault();
-    //  log(event);
   };
-
+  handleClickUsersSignup = (event) => {};
   render() {
     const { classes } = this.props;
     return (
       <Box
         display="flex"
-        flexWrap="wrap"
         justifyContent="center"
         alignItems="center"
         height="50vh"
+        width="100%"
       >
-        <Grid container id="UsersLogin" className={classes.loginContainer}>
+        <Grid container id="UserSignup" className={classes.signupContainer}>
           <form
             className={classes.input_group}
-            onSubmit={this.handleUsersLogin}
+            onSubmit={this.handleSubmitUsersSignup}
           >
-            <UserTextField label="Username" className={classes.mb_20} />
             <UserTextField
-              label="Password"
               className={classes.mb_20}
+              label="Username"
+              type="string"
+            />
+            <UserTextField
+              className={classes.mb_20}
+              label="Password"
               type="password"
             />
+            <UserTextField className={classes.mb_20} label="Email" />
             <SubmitButton
+              className={classes.p_5}
               variant="contained"
-              color="primary"
-              className={classes.w_50 + " " + classes.p_5}
+              fullWidth={true}
               type="submit"
+              color="primary"
+              onClick={this.handleClickUsersSignup}
             >
-              Login
+              okokok
             </SubmitButton>
           </form>
         </Grid>
@@ -120,4 +123,4 @@ class UsersLogin extends React.Component {
   }
 }
 
-export default withStyles(style)(UsersLogin);
+export default withStyles(style)(UsersSignup);

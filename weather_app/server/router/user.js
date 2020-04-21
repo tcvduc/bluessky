@@ -41,7 +41,7 @@ Userrouter.post("/users/logoutalldevice", auth, async (req, res) => {
 });
 
 // create user - post method
-Userrouter.post("/users", async (req, res) => {
+Userrouter.post("/users/signup", async (req, res) => {
   const data = req.body;
   try {
     const newUser = new User(data);

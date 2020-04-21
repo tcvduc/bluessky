@@ -52,7 +52,7 @@ class Autocomplete extends Component {
     // log(index);
     const keywords = dataSuggestions[index];
     // log(dataSuggestions);
-    // const devURL = "http://localhost:5000";
+    //const devURL = "http://localhost:5000";
     const productionsURL = "https://bluessky.herokuapp.com";
 
     this.props.darksky_loading(true);

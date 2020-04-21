@@ -7,6 +7,7 @@ const suggestRoute = require("./router/suggest");
 const homeRoute = require("./router/home");
 const socialRoute = require("./router/social");
 const apiRoute = require("./router/api");
+const assetsRoute = require("./router/assets");
 let log = console.log;
 
 app.use(express.static(path.join(__dirname, "../build")));
@@ -29,6 +30,7 @@ app.use(suggestRoute);
 app.use(homeRoute);
 app.use(socialRoute);
 app.use(apiRoute);
+app.use(assetsRoute);
 const port = process.env.PORT || 5000;
 
 app.get("*", (req, res) => {

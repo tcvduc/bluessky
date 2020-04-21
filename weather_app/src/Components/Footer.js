@@ -42,13 +42,16 @@ const styles = (theme) => ({
   },
 });
 
-let log = console.log;
+// let log = console.log;
 
 class Footer extends React.Component {
   render() {
-    const { classes, loginHandle } = this.props;
+    const { classes, loginHandle, signupHandle } = this.props;
     const handleClickLogin = (event) => {
       loginHandle(event);
+    };
+    const handleClickSignup = (event) => {
+      signupHandle();
     };
     return (
       <footer>
@@ -75,8 +78,13 @@ class Footer extends React.Component {
                 </Button>
               </Grid>
               <Grid item>
-                <Button className={classes.button_pure_css}>
-                  <Link to="/social" className={classes.link_pure_css}>
+                <Button
+                  className={classes.button_pure_css}
+                  onClick={(event) => {
+                    handleClickSignup(event);
+                  }}
+                >
+                  <Link to="/users/signup" className={classes.link_pure_css}>
                     Sign Up
                   </Link>
                 </Button>
