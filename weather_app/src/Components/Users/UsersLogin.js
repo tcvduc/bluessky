@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Button, TextField, Box } from "@material-ui/core";
 import { withStyles } from "@material-ui/core";
-
+import classnames from "classnames";
 const style = () => ({
   root: {},
   loginContainer: {
@@ -13,16 +13,20 @@ const style = () => ({
   },
   input_group: {
     display: "flex",
-    flexWrap: "wrap",
+    flexDirection: "column",
     justifyContent: "center",
     padding: 15,
   },
   mb_20: {
     marginBottom: 20,
   },
-  w_50: {
-    width: "50%",
+  w_80: {
+    width: "80%",
   },
+  center_stuff_by_margin: {
+    margin: "0 auto",
+  },
+
   p_10: {
     padding: 10,
   },
@@ -108,7 +112,11 @@ class UsersLogin extends React.Component {
             <SubmitButton
               variant="contained"
               color="primary"
-              className={classes.w_50 + " " + classes.p_5}
+              className={classnames(
+                classes.w_80,
+                classes.center_stuff_by_margin,
+                classes.p_5
+              )}
               type="submit"
             >
               Login

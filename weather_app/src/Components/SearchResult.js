@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
   place_name_css: {
     textAlign: "center",
   },
+  summary_text_css: {},
   // popup effect
   popup_father: {
     backgroundColor: "transparent",
@@ -103,7 +104,11 @@ function SearchResult(props) {
         </div>
       </Grid>
       <Grid
-        className={classnames(classes.d_flex_center, classes.popup_father)}
+        className={classnames(
+          classes.d_flex_center,
+          classes.popup_father,
+          classes.summary_text_css
+        )}
         item
         xs={12}
         sm={12}

@@ -46,28 +46,37 @@ const style = (theme) => ({
     position: "absolute",
     transition: "0.5s",
   },
+  // child 1 - socialmedia component
   child_1: {
     top: 0,
     left: "50%",
     transform: "translate(-50%, 0)",
     transition: "0.7s",
   },
+  hideSocialMedia: {
+    left: 0,
+    transform: "translate(-100%,0)",
+  },
+  // Thấy logic không hợp lý, cất để đó
+  // hideSocialMedia_login: {
+  //   left: 0,
+  //   transform: "translate(-100%, 0)",
+  // },
+  // hideSocialMedia_signup: {
+  //   right: 0,
+  //   transform: "translate(100%, 0)",
+  // },
+  // child 2 - userlogin component
   child_2: {
     top: 0,
     left: "100%",
   },
+  // child 3 - usersignup component
   child_3: {
     top: 0,
     left: "-100%",
   },
-  hideSocialMedia_login: {
-    left: 0,
-    transform: "translate(-100%, 0)",
-  },
-  hideSocialMedia_signup: {
-    right: 0,
-    transform: "translate(100%, 0)",
-  },
+
   showUsersLogin: {
     left: 0,
   },
@@ -104,25 +113,35 @@ class Social extends React.Component {
     // log("footer touching social");
   };
 
-  hideSocialMediaWhenLoginClick = () => {
-    if (this.showUsersLogin() === true) {
-      const { location } = this.props;
-      if (location.pathname !== "/social") {
-        return true;
-      }
+  // logic không hợp lý
+  // hideSocialMediaWhenLoginClick = () => {
+  //   if (this.showUsersLogin() === true) {
+  //     const { location } = this.props;
+  //     if (location.pathname !== "/social") {
+  //       return true;
+  //     }
+  //     return false;
+  //   }
+  // };
+
+  // hideSocialMediaWhenSignupClick = () => {
+  //   if (this.showUsersSignup() === true) {
+  //     const { location } = this.props;
+  //     if (location.pathname !== "/social") {
+  //       return true;
+  //     }
+  //     return false;
+  //   }
+  // };
+
+  hideSocialMedia = () => {
+    const { location } = this.props;
+    if (location.pathname === "/social") {
       return false;
     }
+    return true;
   };
 
-  hideSocialMediaWhenSignupClick = () => {
-    if (this.showUsersSignup() === true) {
-      const { location } = this.props;
-      if (location.pathname !== "/social") {
-        return true;
-      }
-      return false;
-    }
-  };
   showUsersLogin = () => {
     const { location } = this.props;
     if (location.pathname === "/users/login") {
@@ -146,7 +165,6 @@ class Social extends React.Component {
     return (
       <Grid>
         <Grid item>
-          {/* {this.loginHandle() ? <SocialMedia /> : <UsersLogin />} */}
           <Box
             display="flex"
             flexWrap="wrap"
@@ -157,10 +175,7 @@ class Social extends React.Component {
             <div id="slider" className={classes.father}>
               <div
                 className={classnames(classes.child, classes.child_1, {
-                  [classes.hideSocialMedia_login]:
-                    this.hideSocialMediaWhenLoginClick() === true,
-                  [classes.hideSocialMedia_signup]:
-                    this.hideSocialMediaWhenSignupClick() === true,
+                  [classes.hideSocialMedia]: this.hideSocialMedia() === true,
                 })}
               >
                 <SocialMedia />

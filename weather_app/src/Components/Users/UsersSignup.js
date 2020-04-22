@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withStyles, Box, Grid, Button, TextField } from "@material-ui/core";
-
+import classnames from "classnames";
 const style = () => ({
   root: {},
   signupContainer: {
@@ -19,8 +19,11 @@ const style = () => ({
   mb_20: {
     marginBottom: 20,
   },
-  w_50: {
-    width: "50%",
+  w_80: {
+    width: "80%",
+  },
+  center_stuff_by_margin: {
+    margin: "0 auto",
   },
   p_10: {
     padding: 10,
@@ -107,14 +110,17 @@ class UsersSignup extends Component {
             />
             <UserTextField className={classes.mb_20} label="Email" />
             <SubmitButton
-              className={classes.p_5}
+              className={classnames(
+                classes.p_5,
+                classes.center_stuff_by_margin,
+                classes.w_80
+              )}
               variant="contained"
-              fullWidth={true}
               type="submit"
               color="primary"
               onClick={this.handleClickUsersSignup}
             >
-              okokok
+              Sign up
             </SubmitButton>
           </form>
         </Grid>
