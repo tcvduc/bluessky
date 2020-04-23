@@ -2,6 +2,8 @@ import React from "react";
 import { Grid, Button, TextField, Box } from "@material-ui/core";
 import { withStyles } from "@material-ui/core";
 import classnames from "classnames";
+import Axios from "axios";
+
 const style = () => ({
   root: {},
   loginContainer: {
@@ -80,12 +82,59 @@ const SubmitButton = withStyles((theme) => ({
   },
 }))(Button);
 
-// let log = console.log;
+let log = console.log;
 
 class UsersLogin extends React.Component {
+  state = {
+    username: "",
+    password: "",
+    isloginSuccess: false,
+  };
+
+  // handle change login
   handleUsersLogin = (event) => {
     event.preventDefault();
-    //  log(event);
+    const { username, password } = this.state;
+    const { onLogin, hideUsersLogin } = this.props;
+
+    // log(username, password);
+    // onLogin();
+
+    const devURL = "http://localhost:5000";
+    // const productionsURL = "https://bluessky.herokuapp.com";
+
+    Axios.post(`${devURL}/users/login`, { username, password })
+      .then((rs) => {
+        this.setState({
+          isloginSuccess: true,
+        });
+        // Nếu get được user trong DB thì thành công
+        onLogin(this.state.isloginSuccess);
+        hideUsersLogin(this.state.isloginSuccess);
+      })
+      .catch((er) => {
+        this.setState({
+          isloginSuccess: false,
+        });
+        // Ngược lại thất bại
+        onLogin(this.state.isloginSuccess);
+        hideUsersLogin(this.state.isloginSuccess);
+        log(er.message);
+      });
+  };
+
+  // handle change username
+  handleChangeUsersname = (event) => {
+    this.setState({
+      username: event.target.value,
+    });
+  };
+
+  // handle change password
+  handleChangePassword = (event) => {
+    this.setState({
+      password: event.target.value,
+    });
   };
 
   render() {
@@ -103,11 +152,16 @@ class UsersLogin extends React.Component {
             className={classes.input_group}
             onSubmit={this.handleUsersLogin}
           >
-            <UserTextField label="Username" className={classes.mb_20} />
+            <UserTextField
+              label="Username"
+              className={classes.mb_20}
+              onChange={this.handleChangeUsersname}
+            />
             <UserTextField
               label="Password"
               className={classes.mb_20}
               type="password"
+              onChange={this.handleChangePassword}
             />
             <SubmitButton
               variant="contained"

@@ -138,7 +138,7 @@ class WeatherApp extends Component {
       } else if (
         path === "/social" ||
         path === "/users/login" ||
-        path === "/users/signup"
+        path === "/users/sign-up"
       ) {
         return classes.socialComponentBg;
       }
@@ -151,7 +151,7 @@ class WeatherApp extends Component {
       } else if (
         path === "/social" ||
         path === "/users/login" ||
-        path === "/users/signup"
+        path === "/users/sign-up"
       ) {
         return classes.behindsocialBg;
       }

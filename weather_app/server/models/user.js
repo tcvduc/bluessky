@@ -3,10 +3,10 @@ const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-let log = console.log;
+// let log = console.log;
 // Schema
 const userSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     required: true,
     trim: true,
@@ -53,9 +53,9 @@ userSchema.methods.generateAuthToken = async function () {
 };
 
 // model methods
-userSchema.statics.findByCredentials = async (email, password) => {
+userSchema.statics.findByCredentials = async (username, password) => {
   // check email is available
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ username });
   if (!user) {
     throw new Error("Unable to login!");
   }

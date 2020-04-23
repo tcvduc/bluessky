@@ -84,7 +84,7 @@ class Footer extends React.Component {
                     handleClickSignup(event);
                   }}
                 >
-                  <Link to="/users/signup" className={classes.link_pure_css}>
+                  <Link to="/users/sign-up" className={classes.link_pure_css}>
                     Sign Up
                   </Link>
                 </Button>

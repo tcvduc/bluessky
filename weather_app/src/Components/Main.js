@@ -14,7 +14,7 @@ class Main extends Component {
           <Route exact path="/social" component={Social}></Route>
           <Route exact path="/api/weather" component={Home}></Route>
           <Route exact path="/users/login" component={Social}></Route>
-          <Route exact path="/users/signup" component={Social}></Route>
+          <Route exact path="/users/sign-up" component={Social}></Route>
           <Route>
             <h1>Page not found</h1>
           </Route>

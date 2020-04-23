@@ -2,13 +2,13 @@ const express = require("express");
 const User = require("./../models/user");
 const Userrouter = new express.Router();
 const auth = require("./../middleware/auth");
-// let log = console.log;
+let log = console.log;
 
 // login - post
 Userrouter.post("/users/login", async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
   try {
-    const user = await User.findByCredentials(email, password);
+    const user = await User.findByCredentials(username, password);
     const token = await user.generateAuthToken();
     res.send({ user, token });
   } catch (error) {
@@ -40,15 +40,23 @@ Userrouter.post("/users/logoutalldevice", auth, async (req, res) => {
   }
 });
 
-// create user - post method
-Userrouter.post("/users/signup", async (req, res) => {
+// create user - post method - sign up
+Userrouter.post("/users/sign-up", async (req, res) => {
   const data = req.body;
-  try {
-    const newUser = new User(data);
-    await newUser.save();
-    res.status(200).send("Create user successfully!");
-  } catch (error) {
-    res.status(500).send(error.message);
+
+  // Nếu đã tồn tại user name trong DB thì không cho tạo
+  const { username } = data;
+  const users = await User.findOne({ username });
+  if (users) {
+    return res.send("Username is not available!");
+  } else {
+    try {
+      const newUser = new User(data);
+      await newUser.save();
+      res.status(200).send("Create user successfully!");
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
   }
 });
 

@@ -80,12 +80,15 @@ const style = (theme) => ({
   showUsersLogin: {
     left: 0,
   },
+  hideUsersLogin: {
+    left: "100%",
+  },
   showUsersSignup: {
     left: 0,
   },
 });
 
-// let log = console.log;
+let log = console.log;
 
 class Social extends React.Component {
   // login
@@ -149,12 +152,29 @@ class Social extends React.Component {
     }
     return false;
   };
-  showUsersSignup = () => {
-    const { location } = this.props;
-    if (location.pathname === "/users/signup") {
+  // Nếu đăng nhập thành công thì giấu form này đi chuyển thành login thành công
+  hideUsersLogin = (isloginSuccess) => {
+    // Vì mất căn bản life cicle nên chơi dơ bằng cách này
+    if (this.handleLoginSuccess(isloginSuccess)) {
       return true;
     }
     return false;
+  };
+
+  showUsersSignup = () => {
+    const { location } = this.props;
+    if (location.pathname === "/users/sign-up") {
+      return true;
+    }
+    return false;
+  };
+
+  handleLoginSuccess = (isloginSuccess) => {
+    if (isloginSuccess) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   // Làm hiệu ứng slider - test từ hover sang click rồi sang handle
@@ -183,9 +203,17 @@ class Social extends React.Component {
               <div
                 className={classnames(classes.child, classes.child_2, {
                   [classes.showUsersLogin]: this.showUsersLogin() === true,
+                  [classes.hideUsersLogin]: this.hideUsersLogin() === true,
                 })}
               >
-                <UsersLogin />
+                {1 > 2 ? (
+                  <UsersLogin
+                    onLogin={this.handleLoginSuccess}
+                    hideUsersLogin={this.hideUsersLogin}
+                  />
+                ) : (
+                  "yess"
+                )}
               </div>
               <div
                 className={classnames(classes.child, classes.child_3, {
