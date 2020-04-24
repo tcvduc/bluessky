@@ -42,9 +42,19 @@ const styles = (theme) => ({
   },
 });
 
-// let log = console.log;
+let log = console.log;
 
 class Footer extends React.Component {
+  // componentDidMount = () => {
+  //   log("Footer did mount");
+  // };
+  // componentDidUpdate = () => {
+  //   log("Footer did update");
+  // };
+
+  // componentWillUnmount = () => {
+  //   log("Footer will unmount");
+  // };
   render() {
     const { classes, loginHandle, signupHandle } = this.props;
     const handleClickLogin = (event) => {

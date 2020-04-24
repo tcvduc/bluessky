@@ -95,7 +95,7 @@ class UsersLogin extends React.Component {
   handleUsersLogin = (event) => {
     event.preventDefault();
     const { username, password } = this.state;
-    const { onLogin, hideUsersLogin } = this.props;
+    const { onLogin } = this.props;
 
     // log(username, password);
     // onLogin();
@@ -109,17 +109,18 @@ class UsersLogin extends React.Component {
           isloginSuccess: true,
         });
         // Nếu get được user trong DB thì thành công
+        // log("Login thanh cong!");
         onLogin(this.state.isloginSuccess);
-        hideUsersLogin(this.state.isloginSuccess);
       })
       .catch((er) => {
         this.setState({
           isloginSuccess: false,
         });
         // Ngược lại thất bại
+        // log("Login that bai !");
         onLogin(this.state.isloginSuccess);
-        hideUsersLogin(this.state.isloginSuccess);
-        log(er.message);
+
+        //log(er.message);
       });
   };
 
@@ -137,6 +138,19 @@ class UsersLogin extends React.Component {
     });
   };
 
+  // watch lifecirle
+
+  // componentDidMount = () => {
+  //   log("Userlogin did mount");
+  // };
+
+  // componentDidUpdate = () => {
+  //   log("userlogin did update - setstate");
+  // };
+
+  // componentWillUnmount = () => {
+  //   log("userlogin will un mount");
+  // };
   render() {
     const { classes } = this.props;
     return (

@@ -5,7 +5,9 @@ import Footer from "./Footer";
 import { withRouter } from "react-router-dom";
 import UsersLogin from "./Users/UsersLogin";
 import UsersSignup from "./Users/UsersSignup";
+import UsersDashBoard from "./Users/UsersDashBoard";
 import SocialMedia from "./SocialMedia";
+
 import classnames from "classnames";
 const style = (theme) => ({
   social_icon_css: {
@@ -81,6 +83,7 @@ const style = (theme) => ({
     left: 0,
   },
   hideUsersLogin: {
+    position: "absolute",
     left: "100%",
   },
   showUsersSignup: {
@@ -91,6 +94,10 @@ const style = (theme) => ({
 let log = console.log;
 
 class Social extends React.Component {
+  state = {
+    showUsersLogin: true,
+    showFooter: true,
+  };
   // login
   loginHandle = (event) => {
     // log("footer is touching social");
@@ -153,12 +160,11 @@ class Social extends React.Component {
     return false;
   };
   // Nếu đăng nhập thành công thì giấu form này đi chuyển thành login thành công
-  hideUsersLogin = (isloginSuccess) => {
-    // Vì mất căn bản life cicle nên chơi dơ bằng cách này
-    if (this.handleLoginSuccess(isloginSuccess)) {
-      return true;
-    }
-    return false;
+  // Vì mất căn bản life cicle nên chơi dơ bằng cách này
+  hideUsersLogin = () => {
+    this.setState({
+      showUsersLogin: false,
+    });
   };
 
   showUsersSignup = () => {
@@ -170,11 +176,18 @@ class Social extends React.Component {
   };
 
   handleLoginSuccess = (isloginSuccess) => {
+    // log(isloginSuccess);
     if (isloginSuccess) {
-      return true;
-    } else {
-      return false;
+      this.hideUsersLogin();
+      this.hideFooterComponent();
     }
+  };
+
+  // Đăng nhập thành công thì component footer chếch
+  hideFooterComponent = () => {
+    this.setState({
+      showFooter: false,
+    });
   };
 
   // Làm hiệu ứng slider - test từ hover sang click rồi sang handle
@@ -182,6 +195,7 @@ class Social extends React.Component {
   // Làm từ CSS sang material ui
   render() {
     const { classes } = this.props;
+    const { showUsersLogin, showFooter } = this.state;
     return (
       <Grid>
         <Grid item>
@@ -203,16 +217,12 @@ class Social extends React.Component {
               <div
                 className={classnames(classes.child, classes.child_2, {
                   [classes.showUsersLogin]: this.showUsersLogin() === true,
-                  [classes.hideUsersLogin]: this.hideUsersLogin() === true,
                 })}
               >
-                {1 > 2 ? (
-                  <UsersLogin
-                    onLogin={this.handleLoginSuccess}
-                    hideUsersLogin={this.hideUsersLogin}
-                  />
+                {showUsersLogin ? (
+                  <UsersLogin onLogin={this.handleLoginSuccess} />
                 ) : (
-                  "yess"
+                  <UsersDashBoard />
                 )}
               </div>
               <div
@@ -226,10 +236,14 @@ class Social extends React.Component {
           </Box>
         </Grid>
         <Grid item className={classes.footer_coponent_css}>
-          <Footer
-            loginHandle={this.loginHandle}
-            signupHandle={this.signupHandle}
-          />
+          {showFooter ? (
+            <Footer
+              loginHandle={this.loginHandle}
+              signupHandle={this.signupHandle}
+            />
+          ) : (
+            log("footer now dead")
+          )}
         </Grid>
       </Grid>
     );

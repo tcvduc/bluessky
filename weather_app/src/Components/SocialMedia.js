@@ -30,11 +30,11 @@ const style = (theme) => ({
 
 class SocialMedia extends Component {
   handleFBClick = () => {
-    return (window.location.href = "https://www.facebook.com/PanAngelo.99/");
+    return (window.location.href = "https://www.facebook.com");
   };
 
   handleINSClick = () => {
-    return (window.location.href = "https://www.instagram.com/aintducc/");
+    return (window.location.href = "https://www.instagram.com");
   };
   render() {
     const { classes } = this.props;
