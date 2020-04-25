@@ -4,6 +4,50 @@ const Userrouter = new express.Router();
 const auth = require("./../middleware/auth");
 let log = console.log;
 
+// create user - post method - sign up
+Userrouter.post("/users/sign-up", async (req, res) => {
+  const data = req.body;
+
+  // Nếu đã tồn tại user name trong DB thì không cho tạo
+  const { username, email } = data;
+
+  const users = await User.findOne({ username });
+  if (users) {
+    // log("User name is not available!");
+    // Nếu mail đã đăng ký rồi thì không cho đăng ký
+    const checkMail = await User.findOne({ email });
+
+    if (checkMail) {
+      res.send({
+        error: "Email has been used!",
+        status: 500,
+      });
+    } else {
+      res.send({
+        error: "User name is not available!",
+        status: 500,
+      });
+    }
+  } else {
+    try {
+      const newUser = new User(data);
+      await newUser.save();
+      // log("Create user successfully!");
+      //   res.status(200).send("Create user successfully!");
+      res.send({
+        message: "Create user successfully!",
+        status: 200,
+      });
+    } catch (error) {
+      //    log(error.message);
+      res.send({
+        error: error.message,
+        status: 500,
+      });
+      //  res.status(500).send(error.message);
+    }
+  }
+});
 // login - post
 Userrouter.post("/users/login", async (req, res) => {
   const { username, password } = req.body;
@@ -12,7 +56,11 @@ Userrouter.post("/users/login", async (req, res) => {
     const token = await user.generateAuthToken();
     res.send({ user, token });
   } catch (error) {
-    res.status(500).send(error.message);
+    res.send({
+      status: 500,
+      error: error.message,
+    });
+    // res.status(500).send(error.message);
   }
 });
 
@@ -37,26 +85,6 @@ Userrouter.post("/users/logoutalldevice", auth, async (req, res) => {
     res.send("Logout all device!");
   } catch (err) {
     res.status(500).send(err.message);
-  }
-});
-
-// create user - post method - sign up
-Userrouter.post("/users/sign-up", async (req, res) => {
-  const data = req.body;
-
-  // Nếu đã tồn tại user name trong DB thì không cho tạo
-  const { username } = data;
-  const users = await User.findOne({ username });
-  if (users) {
-    return res.send("Username is not available!");
-  } else {
-    try {
-      const newUser = new User(data);
-      await newUser.save();
-      res.status(200).send("Create user successfully!");
-    } catch (error) {
-      res.status(500).send(error.message);
-    }
   }
 });
 

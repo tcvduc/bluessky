@@ -82,7 +82,7 @@ const SubmitButton = withStyles((theme) => ({
   },
 }))(Button);
 
-let log = console.log;
+// let log = console.log;
 
 class UsersLogin extends React.Component {
   state = {
@@ -90,9 +90,9 @@ class UsersLogin extends React.Component {
     password: "",
     isloginSuccess: false,
   };
-
+  _isMount = false;
   // handle change login
-  handleUsersLogin = (event) => {
+  handleUsersLogin = async (event) => {
     event.preventDefault();
     const { username, password } = this.state;
     const { onLogin } = this.props;
@@ -103,13 +103,20 @@ class UsersLogin extends React.Component {
     const devURL = "http://localhost:5000";
     // const productionsURL = "https://bluessky.herokuapp.com";
 
-    Axios.post(`${devURL}/users/login`, { username, password })
+    await Axios.post(`${devURL}/users/login`, { username, password })
       .then((rs) => {
+        const { data } = rs;
+        const { error } = data;
         this.setState({
           isloginSuccess: true,
         });
         // Nếu get được user trong DB thì thành công
         // log("Login thanh cong!");
+        //   log(data);
+        if (error) {
+          throw new Error(error);
+        }
+
         onLogin(this.state.isloginSuccess);
       })
       .catch((er) => {
@@ -118,6 +125,7 @@ class UsersLogin extends React.Component {
         });
         // Ngược lại thất bại
         // log("Login that bai !");
+        alert(er);
         onLogin(this.state.isloginSuccess);
 
         //log(er.message);
@@ -144,13 +152,14 @@ class UsersLogin extends React.Component {
   //   log("Userlogin did mount");
   // };
 
-  // componentDidUpdate = () => {
-  //   log("userlogin did update - setstate");
-  // };
+  componentDidUpdate = () => {
+    // log("userlogin did update - setstate");
+    this._isMount = true;
+  };
 
-  // componentWillUnmount = () => {
-  //   log("userlogin will un mount");
-  // };
+  componentWillUnmount = () => {
+    this._isMount = false;
+  };
   render() {
     const { classes } = this.props;
     return (

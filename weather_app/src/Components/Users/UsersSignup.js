@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withStyles, Box, Grid, Button, TextField } from "@material-ui/core";
 import classnames from "classnames";
+import Axios from "axios";
 const style = () => ({
   root: {},
   signupContainer: {
@@ -77,12 +78,81 @@ const SubmitButton = withStyles((theme) => ({
     },
   },
 }))(Button);
-// let log = console.log;
+let log = console.log;
 class UsersSignup extends Component {
-  handleSubmitUsersSignup = (event) => {
+  state = {
+    username: "",
+    password: "",
+    email: "",
+    signUpSuccess: false,
+    errorGetFromServer: "",
+  };
+
+  // handle change usersname
+  handleChangeUsersname = (event) => {
+    this.setState({
+      username: event.target.value,
+    });
+  };
+  // handle change password
+  handleChangePassword = (event) => {
+    this.setState({
+      password: event.target.value,
+    });
+  };
+  // handle change email
+  handleChangeEmail = (event) => {
+    this.setState({
+      email: event.target.value,
+    });
+  };
+
+  // handle submit sign up
+  handleSubmitUsersSignup = async (event) => {
     event.preventDefault();
+    const { username, password, email } = this.state;
+    //  log(username, password, email);
+
+    const dataSendToServer = {
+      username,
+      password,
+      email,
+    };
+    JSON.stringify(dataSendToServer);
+
+    // log(dataSendToServer);
+    // axios
+
+    const devURL = "http://localhost:5000";
+    // const proURL = "https://bluessky.herokuapp.com/";
+    await Axios.post(`${devURL}/users/sign-up`, dataSendToServer)
+      .then((result) => {
+        const { data } = result;
+        const { error } = data;
+
+        if (error) {
+          this.setState({
+            signUpSuccess: false,
+            errorGetFromServer: error,
+          });
+          throw new Error(error);
+        }
+        log(data);
+        alert(data.message);
+        this.setState({
+          signUpSuccess: true,
+        });
+      })
+      .catch((er) => {
+        this.setState({
+          signUpSuccess: false,
+        });
+        alert(er);
+        log(er);
+      });
   };
   handleClickUsersSignup = (event) => {};
+
   render() {
     const { classes } = this.props;
     return (
@@ -102,13 +172,20 @@ class UsersSignup extends Component {
               className={classes.mb_20}
               label="Username"
               type="string"
+              onChange={this.handleChangeUsersname}
             />
             <UserTextField
               className={classes.mb_20}
               label="Password"
               type="password"
+              onChange={this.handleChangePassword}
             />
-            <UserTextField className={classes.mb_20} label="Email" />
+            <UserTextField
+              className={classes.mb_20}
+              label="Email"
+              type="email"
+              onChange={this.handleChangeEmail}
+            />
             <SubmitButton
               className={classnames(
                 classes.p_5,

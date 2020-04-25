@@ -91,12 +91,13 @@ const style = (theme) => ({
   },
 });
 
-let log = console.log;
+// let log = console.log;
 
 class Social extends React.Component {
   state = {
     showUsersLogin: true,
     showFooter: true,
+    dataSendToDashBoard: {},
   };
   // login
   loginHandle = (event) => {
@@ -160,7 +161,7 @@ class Social extends React.Component {
     return false;
   };
   // Nếu đăng nhập thành công thì giấu form này đi chuyển thành login thành công
-  // Vì mất căn bản life cicle nên chơi dơ bằng cách này
+
   hideUsersLogin = () => {
     this.setState({
       showUsersLogin: false,
@@ -174,7 +175,7 @@ class Social extends React.Component {
     }
     return false;
   };
-
+  // Đăng nhập thành công thì component footer và userlogin chếch
   handleLoginSuccess = (isloginSuccess) => {
     // log(isloginSuccess);
     if (isloginSuccess) {
@@ -183,12 +184,13 @@ class Social extends React.Component {
     }
   };
 
-  // Đăng nhập thành công thì component footer chếch
   hideFooterComponent = () => {
     this.setState({
       showFooter: false,
     });
   };
+
+  // quan hệ social - userlogin - user dasboard
 
   // Làm hiệu ứng slider - test từ hover sang click rồi sang handle
   // Tìm cách viết điều kiện classes ==>> npm classnames
@@ -242,7 +244,7 @@ class Social extends React.Component {
               signupHandle={this.signupHandle}
             />
           ) : (
-            log("footer now dead")
+            ""
           )}
         </Grid>
       </Grid>

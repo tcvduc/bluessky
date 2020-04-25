@@ -42,7 +42,7 @@ const styles = (theme) => ({
   },
 });
 
-let log = console.log;
+// let log = console.log;
 
 class Footer extends React.Component {
   // componentDidMount = () => {
