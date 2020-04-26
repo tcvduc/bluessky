@@ -33,6 +33,20 @@ const style = (theme) => ({
   },
   footer_coponent_css: {
     marginTop: "10%",
+    // 0 - 600
+    [theme.breakpoints.up("xs")]: {
+      marginTop: "20%",
+    },
+
+    // 600 - 960
+    [theme.breakpoints.up("sm")]: {
+      marginTop: 0,
+    },
+
+    //  > 960
+    [theme.breakpoints.up("lg")]: {
+      marginTop: "10%",
+    },
   },
   //  animation slider
   test: {

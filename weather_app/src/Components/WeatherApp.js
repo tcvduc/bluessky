@@ -40,6 +40,7 @@ const styles = (theme) => ({
     paddingTop: 0 + "!important",
   },
 
+  // home
   homeComponentBg: {
     position: "absolute",
     borderRadius: "5px",
@@ -54,19 +55,33 @@ const styles = (theme) => ({
     top: "53%",
     left: "52%",
     transform: "translate(-50%,-50%)",
+    // 0 600px width
     [theme.breakpoints.up("xs")]: {
-      width: "70vw",
+      top: 0,
+      left: 0,
+      transform: "initial",
+      width: "100vw",
+      height: "100vh",
+      margin: "0",
     },
+    // 600px  960px width
     [theme.breakpoints.up("sm")]: {
       width: "50vw",
+      height: "80vh",
+      top: "53%",
+      left: "52%",
+      transform: "translate(-50%,-50%)",
     },
+    // 600px  960px width
     [theme.breakpoints.up("md")]: {
       width: "35vw",
     },
+    // 960px  1280px width
     [theme.breakpoints.up("lg")]: {
       width: "27vw",
     },
   },
+  // social
   socialComponentBg: {
     position: "absolute",
     borderRadius: "5px",
@@ -81,11 +96,24 @@ const styles = (theme) => ({
     top: "53%",
     left: "52%",
     transform: "translate(-50%,-50%)",
+    // responsive
+    // 0 - 600
     [theme.breakpoints.up("xs")]: {
-      width: "70vw",
+      top: 0,
+      left: 0,
+      margin: 0,
+      transform: "translate(0,0)",
+      height: "100vh",
+      width: "100vw",
     },
+
+    // 600 - 960
     [theme.breakpoints.up("sm")]: {
       width: "50vw",
+      height: "80vh",
+      top: "53%",
+      left: "52%",
+      transform: "translate(-50%,-50%)",
     },
     [theme.breakpoints.up("md")]: {
       width: "35vw",
@@ -102,9 +130,29 @@ const styles = (theme) => ({
   },
   top_place: {
     height: "15%",
+    // responsive 0 - 600px
+    [theme.breakpoints.up("xs")]: {
+      height: "18%",
+    },
+    // 600 - 960
+    [theme.breakpoints.up("sm")]: {
+      height: "22%",
+    },
+    // > 960
+    [theme.breakpoints.up("md")]: {
+      height: "15%",
+    },
   },
   bottom_place: {
     height: "85%",
+    // responsive 0 - 600px
+    [theme.breakpoints.up("xs")]: {
+      height: "82%",
+    },
+    // 600 - 960
+    [theme.breakpoints.up("sm")]: {
+      height: "78%",
+    },
   },
   "& @media (max-width:576px)": {
     homeComponentBg: {
