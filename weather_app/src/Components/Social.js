@@ -2,7 +2,7 @@ import React from "react";
 import { Box, withStyles, Grid } from "@material-ui/core";
 import "./../sass/svg.css";
 import Footer from "./Footer";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import UsersLogin from "./Users/UsersLogin";
 import UsersSignup from "./Users/UsersSignup";
 import UsersDashBoard from "./Users/UsersDashBoard";
@@ -105,13 +105,14 @@ const style = (theme) => ({
   },
 });
 
-// let log = console.log;
+let log = console.log;
 
 class Social extends React.Component {
   state = {
     showUsersLogin: true,
     showFooter: true,
     dataSendToDashBoard: {},
+    isLogginSuccess: false,
   };
   // login
   loginHandle = (event) => {
@@ -192,6 +193,7 @@ class Social extends React.Component {
   // Đăng nhập thành công thì component footer và userlogin chếch
   handleLoginSuccess = (isloginSuccess) => {
     // log(isloginSuccess);
+
     if (isloginSuccess) {
       this.hideUsersLogin();
       this.hideFooterComponent();
@@ -204,6 +206,22 @@ class Social extends React.Component {
     });
   };
 
+  componentDidMount = () => {
+    const userInfor = localStorage.getItem("userInfor");
+    log(userInfor);
+    if (userInfor) {
+      this.setState({
+        isLogginSuccess: true,
+      });
+    }
+
+    log("Social did mount");
+  };
+
+  componentDidUpdate = () => {
+    log("Social did update");
+  };
+
   // quan hệ social - userlogin - user dasboard
 
   // Làm hiệu ứng slider - test từ hover sang click rồi sang handle
@@ -211,7 +229,10 @@ class Social extends React.Component {
   // Làm từ CSS sang material ui
   render() {
     const { classes } = this.props;
-    const { showUsersLogin, showFooter } = this.state;
+    const { showUsersLogin, showFooter, isLogginSuccess } = this.state;
+    if (isLogginSuccess) {
+      return <Redirect to="/users/dashboard" />;
+    }
     return (
       <Grid>
         <Grid item>

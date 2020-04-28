@@ -173,33 +173,60 @@ const styles = (theme) => ({
   },
 });
 
+let log = console.log;
 class WeatherApp extends Component {
+  state = {
+    userInfor: {},
+  };
+  handleLogin = () => {
+    // log(login_status);
+  };
+
+  // componentDidMount = () => {
+  //   log("App did mount");
+  // };
+
+  // componentWillMount = () => {
+  //   log("App will mount");
+  // };
+  // componentDidUpdate = () => {
+  //   // check token
+  //   const userInfor = localStorage.getItem("userInfor");
+
+  //   log("app did update");
+  // };
+  // componentWillUnmount = () => {
+  //   log("App will unmount");
+  // };
+
   render() {
     const { classes } = this.props;
     const { pathname } = this.props.location;
     //console.log(pathname);
 
-    // handle path background weatherapp component
+    // handle path background weatherapp component - (home)
     const checkPathWeatherApp = (path) => {
       if (path === "/home" || path === "/") {
         return classes.homeComponentBg;
       } else if (
         path === "/social" ||
         path === "/users/login" ||
-        path === "/users/sign-up"
+        path === "/users/sign-up" ||
+        path === "/users/dashboard"
       ) {
         return classes.socialComponentBg;
       }
       return " ";
     };
-    /* function handle background fullwidth app */
+    /* function handle background fullwidth app    */
     const checkPathBehindBgWeatherApp = (path) => {
       if (path === "/home" || path === "/") {
         return classes.behindHomeBg;
       } else if (
         path === "/social" ||
         path === "/users/login" ||
-        path === "/users/sign-up"
+        path === "/users/sign-up" ||
+        path === "/users/dashboard"
       ) {
         return classes.behindsocialBg;
       }

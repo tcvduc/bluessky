@@ -34,6 +34,7 @@ const initState = {
   suggestions: [],
   isLoading: false,
   darkskyLoading: false,
+  // user
 };
 
 // root Reducer

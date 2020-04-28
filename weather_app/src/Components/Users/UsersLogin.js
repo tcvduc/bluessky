@@ -82,7 +82,7 @@ const SubmitButton = withStyles((theme) => ({
   },
 }))(Button);
 
-// let log = console.log;
+let log = console.log;
 
 class UsersLogin extends React.Component {
   state = {
@@ -97,6 +97,7 @@ class UsersLogin extends React.Component {
     const { username, password } = this.state;
     const { onLogin } = this.props;
 
+    // log(this.props);
     // log(username, password);
     // onLogin();
 
@@ -107,6 +108,20 @@ class UsersLogin extends React.Component {
       .then((rs) => {
         const { data } = rs;
         const { error } = data;
+        //log(data);
+        if (data) {
+          const dataSaveToLocalStorage = {
+            token: data.token,
+            username: data.user.username,
+            password: data.user.password,
+            email: data.user.email,
+            _id: data.user._id,
+          };
+
+          // log(dataSaveToLocalStorage);
+          localStorage.setItem("userInfor", JSON.stringify(data));
+        }
+
         this.setState({
           isloginSuccess: true,
         });
