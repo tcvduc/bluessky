@@ -10,16 +10,24 @@ class Main extends Component {
     return (
       <main>
         <Switch>
-          <Route exact path="/" component={Home}></Route>
-          <Route exact path="/home" component={Home}></Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/home">
+            <Home />
+          </Route>
           <Route exact path="/social">
             <Social />
           </Route>
-          <Route exact path="/api/weather" component={Home}></Route>
+          <Route exact path="/api/weather">
+            <Home />
+          </Route>
           <Route exact path="/users/login">
             <Social />
           </Route>
-          <Route exact path="/users/dashboard" component={UsersDashBoard} />
+          <Route exact path="/users/dashboard">
+            <UsersDashBoard />
+          </Route>
           <Route exact path="/users/sign-up">
             <Social />
           </Route>

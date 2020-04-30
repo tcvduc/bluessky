@@ -13,10 +13,6 @@ weatherStatusRouter.get("/weather/status", (req, res) => {
 
   const devURL = "http://localhost:5000";
   // const proURL = "uessky.herokuapp.com";
-  const icon = {
-    rain: `${devURL}/assets/svg/rain`,
-    sunny: `${devURL}/assets/svg/sun`,
-  };
 
   geocoding(location, (geo_er, geo_res) => {
     if (geo_er) {
@@ -37,15 +33,13 @@ weatherStatusRouter.get("/weather/status", (req, res) => {
       const fore_data = fore_res.currently;
       const { summary } = fore_data;
       // Nếu có tồn tại chữ mưa thì icon mưa ngược lại nắng
-      if (summary.includes("Mưa")) {
+      if (summary.includes("mưa")) {
         res.send({
-          status: summary,
-          icon: icon.rain,
+          iconStatus: "Mưa",
         });
       }
       res.send({
-        status: summary,
-        icon: icon.sunny,
+        iconStatus: "Nắng",
       });
     });
   });

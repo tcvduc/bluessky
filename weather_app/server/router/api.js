@@ -3,6 +3,7 @@ const apiRouter = new express.Router();
 const geocoding = require("./../../src/utils/geocoding");
 const forecast = require("./../../src/utils/forecast");
 
+let log = console.log;
 apiRouter.get("/api/weather", async (req, res) => {
   if (!req.query.search) {
     return res.send("Lỗi!");
@@ -28,11 +29,20 @@ apiRouter.get("/api/weather", async (req, res) => {
         return res.send(fore_err);
       }
       const fore_data = fore_res;
+      // status icon
+      const chechWeatherStatus = () => {
+        if (fore_data.currently.summary.includes("mưa")) {
+          return "Mưa";
+        }
+        return "Nắng";
+      };
       const result = {
         place_name: place_name,
         summary: fore_data.currently.summary,
         temperature: fore_data.currently.temperature,
+        iconStatus: chechWeatherStatus(),
       };
+
       res.send(result);
     });
   });

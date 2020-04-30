@@ -1,44 +1,65 @@
 import React, { Component } from "react";
-import { Box } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
+import { Redirect } from "react-router-dom";
 
-// let log = console.log;
+let log = console.log;
 class UsersDashBoard extends Component {
   state = {
     user: {},
+    token: "",
+    isLogout: false,
   };
   handleLoadUser = () => {
     // const devURL = "http://localhost:5000";
     // const proURL = "https://bluessky.herokuapp.com/";
-    // const { infor_user } = this.props;
-    // this.setState({
-    //   user: infor_user,
-    // });
   };
-  // componentDidMount = () => {
-  //   // log(this.state);
-  //   const { dataGetFromserver } = this.props;
-  //   const { data } = dataGetFromserver;
-  //   log(data);
-  //   this.setState({
-  //     user: data,
-  //   });
-  // };
 
-  // componentWillUpdate = () => {};
-  // componentWillUnmount = () => {
-  //   log("Userdashboard unmount");
-  // };
+  // handle logout
+  handleLogout = (event) => {
+    this.setState({
+      user: {},
+      token: "",
+      isLogout: true,
+    });
+    localStorage.removeItem("userInfor");
+  };
+  componentDidMount = () => {
+    log("User dashboard didmount");
+    const userInfor = localStorage.getItem("userInfor");
+    if (userInfor) {
+      const jsonUserInfor = JSON.parse(userInfor);
+      const { user, token } = jsonUserInfor;
+      this.setState({
+        user,
+        token,
+      });
+    }
+  };
+
+  componentDidUpdate = () => {
+    log("User dashboard did update");
+  };
+
+  componentWillUnmount = () => {
+    log("User dashboard will unmount");
+  };
 
   render() {
+    const { username } = this.state.user;
+    const { isLogout } = this.state;
+    if (isLogout) {
+      return <Redirect to="/social" />;
+    }
     return (
       <Box
         display="flex"
-        flexWrap="wrap"
+        flexDirection="column"
         justifyContent="center"
         alignItems="center"
         height="50vh"
       >
-        <div>user dashboard component</div>
+        <div>{username} dashboard component</div>
+        <Button onClick={this.handleLogout}>Logout</Button>
       </Box>
     );
   }

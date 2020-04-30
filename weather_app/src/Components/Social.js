@@ -206,9 +206,10 @@ class Social extends React.Component {
     });
   };
 
+  // handle local storage
   componentDidMount = () => {
     const userInfor = localStorage.getItem("userInfor");
-    log(userInfor);
+    // log(userInfor);
     if (userInfor) {
       this.setState({
         isLogginSuccess: true,
