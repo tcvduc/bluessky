@@ -123,9 +123,9 @@ class UsersSignup extends Component {
     // log(dataSendToServer);
     // axios
 
-    const devURL = "http://localhost:5000";
-    // const proURL = "https://bluessky.herokuapp.com";
-    await Axios.post(`${devURL}/users/sign-up`, dataSendToServer)
+    //const devURL = "http://localhost:5000";
+    const proURL = "https://bluessky.herokuapp.com";
+    await Axios.post(`${proURL}/users/sign-up`, dataSendToServer)
       .then((result) => {
         const { data } = result;
         const { error } = data;

@@ -132,9 +132,9 @@ function Home(props) {
 
   React.useEffect(() => {
     async function handleStatusWeather() {
-      const devURL = "http://localhost:5000";
-      // const proURL = "uessky.herokuapp.com";
-      await Axios.get(`${devURL}/weather/status`)
+      // const devURL = "http://localhost:5000";
+      const productionsURL = "https://bluessky.herokuapp.com";
+      await Axios.get(`${productionsURL}/weather/status`)
         .then((iconStatus) => {
           setStausWeather(iconStatus.data.iconStatus);
           //log(iconStatus.data.iconStatus);

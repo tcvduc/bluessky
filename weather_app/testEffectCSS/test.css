@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* slider effect  */
+
+/* #special {
+  height: 40px;
+
+  width: 300px;
+  background-color: lightskyblue;
+  font-size: 30px;
+}
+
+.father {
+  overflow: hidden;
+  position: relative;
+}
+
+.father:hover .child-1 {
+  transform: translate(-100%, 0);
+}
+.father:hover .child-2 {
+  left: 0;
+}
+
+.child {
+  position: absolute;
+  transition: 0.5s;
+}
+
+.child-1 {
+  top: 0;
+  left: 0;
+}
+
+.child-2 {
+  top: 0;
+  left: 100%;
+} */
+
+/* popup effect */
+
+.popup_father {
+  background-color: lightskyblue;
+  width: 150px;
+  overflow: hidden;
+}
+
+.popup_father:hover .popup_child-1 {
+  transform: translate(0, 0) rotate(0);
+}
+
+.popup_child {
+  background-color: lightcoral;
+  font-size: 30px;
+  transition: 0.5s;
+}
+
+.popup_child-1 {
+  transform: translate(0, 100%) rotate(8deg);
+}

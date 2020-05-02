@@ -16,7 +16,7 @@ weatherStatusRouter.get("/weather/status", (req, res) => {
 
   geocoding(location, (geo_er, geo_res) => {
     if (geo_er) {
-      return res.send(er);
+      res.send(er.message);
     }
     const geo_data = geo_res.features.map((feature) => {
       return {

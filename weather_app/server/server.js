@@ -23,6 +23,7 @@ app.use(function (req, res, next) {
     "Access-Control-Allow-Methods",
     "GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE"
   );
+
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
@@ -37,7 +38,7 @@ app.use(socialRoute);
 app.use(apiRoute);
 app.use(assetsRoute);
 app.use(weatherStatusRoute);
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./../build", "index.html"));

@@ -105,7 +105,7 @@ const style = (theme) => ({
   },
 });
 
-let log = console.log;
+// let log = console.log;
 
 class Social extends React.Component {
   state = {
@@ -194,7 +194,7 @@ class Social extends React.Component {
       });
     }
 
-    log("Social did mount");
+    // log("Social did mount");
   };
 
   componentDidUpdate = () => {
