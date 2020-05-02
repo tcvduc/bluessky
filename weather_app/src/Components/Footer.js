@@ -56,13 +56,11 @@ class Footer extends React.Component {
   //   log("Footer will unmount");
   // };
   render() {
-    const { classes, loginHandle, signupHandle } = this.props;
+    const { classes, loginHandle } = this.props;
     const handleClickLogin = (event) => {
       loginHandle(event);
     };
-    const handleClickSignup = (event) => {
-      signupHandle();
-    };
+
     return (
       <footer>
         <Box className={classes.root}>
@@ -88,12 +86,7 @@ class Footer extends React.Component {
                 </Button>
               </Grid>
               <Grid item>
-                <Button
-                  className={classes.button_pure_css}
-                  onClick={(event) => {
-                    handleClickSignup(event);
-                  }}
-                >
+                <Button className={classes.button_pure_css}>
                   <Link to="/users/sign-up" className={classes.link_pure_css}>
                     Sign Up
                   </Link>

@@ -82,7 +82,7 @@ const SubmitButton = withStyles((theme) => ({
   },
 }))(Button);
 
-let log = console.log;
+// let log = console.log;
 
 class UsersLogin extends React.Component {
   state = {
@@ -95,7 +95,7 @@ class UsersLogin extends React.Component {
   handleUsersLogin = async (event) => {
     event.preventDefault();
     const { username, password } = this.state;
-    const { onLogin } = this.props;
+    const { loginStatus } = this.props;
 
     // log(this.props);
     // log(username, password);
@@ -107,41 +107,27 @@ class UsersLogin extends React.Component {
     await Axios.post(`${devURL}/users/login`, { username, password })
       .then((rs) => {
         const { data } = rs;
-        const { error } = data;
-        //log(data);
-        if (data) {
-          const dataSaveToLocalStorage = {
-            token: data.token,
-            username: data.user.username,
-            password: data.user.password,
-            email: data.user.email,
-            _id: data.user._id,
-          };
 
-          // log(dataSaveToLocalStorage);
+        if (data) {
           localStorage.setItem("userInfor", JSON.stringify(data));
         }
 
         this.setState({
           isloginSuccess: true,
         });
-        // Nếu get được user trong DB thì thành công
-        // log("Login thanh cong!");
-        //   log(data);
-        if (error) {
-          throw new Error(error);
-        }
-
-        onLogin(this.state.isloginSuccess);
+        loginStatus(this.state.isloginSuccess);
       })
       .catch((er) => {
         this.setState({
           isloginSuccess: false,
         });
+        loginStatus(this.state.isloginSuccess);
         // Ngược lại thất bại
         // log("Login that bai !");
-        alert(er);
-        onLogin(this.state.isloginSuccess);
+
+        // er.response er.request
+        //log(er.response);
+        alert(er.response.data);
 
         //log(er.message);
       });

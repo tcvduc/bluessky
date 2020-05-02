@@ -56,10 +56,8 @@ Userrouter.post("/users/login", async (req, res) => {
     const token = await user.generateAuthToken();
     res.send({ user, token });
   } catch (error) {
-    res.send({
-      status: 500,
-      error: error.message,
-    });
+    res.status(500).send(error.message);
+
     // res.status(500).send(error.message);
   }
 });

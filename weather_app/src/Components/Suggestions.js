@@ -51,18 +51,22 @@ class Autocomplete extends Component {
 
   handleSearchClick = (event, index) => {
     const dataSuggestions = [...this.props.suggestions];
+
     // log(dataSuggestions);
     // log(index);
     const keywords = dataSuggestions[index];
     // log(dataSuggestions);
     const devURL = "http://localhost:5000";
-   // const productionsURL = "https://bluessky.herokuapp.com";
+    // const productionsURL = "https://bluessky.herokuapp.com";
 
     this.props.darksky_loading(true);
     Axios.get(`${devURL}/api/weather?search=${keywords}`)
       .then((datas) => {
         this.props.client_result(datas.data);
         this.props.darksky_loading(false);
+        // khi có data rồi mới chuyển icon mưa hay nắng
+        const { clickMeanUpdateStatusWeather } = this.props;
+        clickMeanUpdateStatusWeather();
       })
       .catch((er) => {
         log(er);

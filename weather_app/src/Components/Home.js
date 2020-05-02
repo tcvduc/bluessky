@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Button } from "@material-ui/core";
+import { Box, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchInput from "./SearchInput";
 import Suggestions from "./Suggestions";
@@ -101,6 +101,8 @@ function RealTimeClock() {
 }
 
 let log = console.log;
+//  học hook cái này - có chức năng gì làm bằng hook hết
+// list chức năng: chuyển icon mưa nắng, thời gian tự động
 function Home(props) {
   const classes = usestyles();
   const [completed, setCompleted] = React.useState(0);
@@ -127,6 +129,7 @@ function Home(props) {
 
   // status default
   const [statusWeather, setStausWeather] = React.useState(0);
+
   React.useEffect(() => {
     async function handleStatusWeather() {
       const devURL = "http://localhost:5000";
@@ -134,12 +137,12 @@ function Home(props) {
       await Axios.get(`${devURL}/weather/status`)
         .then((iconStatus) => {
           setStausWeather(iconStatus.data.iconStatus);
-          // log(iconStatus);
+          //log(iconStatus.data.iconStatus);
         })
         .catch((e) => {
           log(e);
         });
-      log(props);
+      //   log(props);
     }
     handleStatusWeather();
   }, []);
@@ -148,14 +151,25 @@ function Home(props) {
 
   const handleStatusResult = () => {
     const { client_result } = props;
-
+    //  log(props);
+    // log(client_result);
     if (client_result) {
-      setStausWeather(client_result.iconStatus);
+      setStausWeather(client_result[client_result.length - 1].iconStatus);
     }
   };
+  const [didUpdate, setDidUpdate] = React.useState(false);
+
+  const isDidUpdate = () => {
+    if (didUpdate) {
+      setDidUpdate(false);
+    } else {
+      setDidUpdate(true);
+    }
+  };
+
   React.useEffect(() => {
     handleStatusResult();
-  }, []);
+  }, [didUpdate]);
 
   // React.useEffect(() => {
   //   log(statusWeather);
@@ -257,7 +271,7 @@ function Home(props) {
               {" "}
               change status icon
             </Button> */}
-            <Suggestions />
+            <Suggestions clickMeanUpdateStatusWeather={isDidUpdate} />
             <SearchResult />
           </Grid>
         </Grid>

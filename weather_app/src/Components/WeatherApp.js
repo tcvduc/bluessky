@@ -173,13 +173,10 @@ const styles = (theme) => ({
   },
 });
 
-let log = console.log;
+// let log = console.log;
 class WeatherApp extends Component {
   state = {
     userInfor: {},
-  };
-  handleLogin = () => {
-    // log(login_status);
   };
 
   // componentDidMount = () => {

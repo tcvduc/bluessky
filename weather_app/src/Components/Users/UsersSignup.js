@@ -78,7 +78,7 @@ const SubmitButton = withStyles((theme) => ({
     },
   },
 }))(Button);
-let log = console.log;
+// let log = console.log;
 class UsersSignup extends Component {
   state = {
     username: "",
@@ -137,7 +137,7 @@ class UsersSignup extends Component {
           });
           throw new Error(error);
         }
-        log(data);
+        //  log(data);
         alert(data.message);
         this.setState({
           signUpSuccess: true,
@@ -148,10 +148,9 @@ class UsersSignup extends Component {
           signUpSuccess: false,
         });
         alert(er);
-        log(er);
+        //  log(er);
       });
   };
-  handleClickUsersSignup = (event) => {};
 
   render() {
     const { classes } = this.props;
@@ -195,7 +194,6 @@ class UsersSignup extends Component {
               variant="contained"
               type="submit"
               color="primary"
-              onClick={this.handleClickUsersSignup}
             >
               Sign up
             </SubmitButton>

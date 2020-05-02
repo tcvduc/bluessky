@@ -63,6 +63,7 @@ class SearchInput extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
     const clientInputIndex = this.state.clientInput.length - 1;
     const keyword = this.state.clientInput[clientInputIndex];
     //  log(keyword);
@@ -75,7 +76,7 @@ class SearchInput extends Component {
     // location.search = keyword;
     //  log(location);
     const devURL = "http://localhost:5000";
-  //  const productionsURL = "https://bluessky.herokuapp.com";
+    //  const productionsURL = "https://bluessky.herokuapp.com";
     Axios.get(`${devURL}/suggests/geo_data?search=${keyword}`)
       .then((datas) => {
         // log(data.data); -> object includes lat long place

@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-let log = console.log;
+// let log = console.log;
 
 // Làm hiệu ứng popup cho cái này
 // làm từ css chay sang material ui

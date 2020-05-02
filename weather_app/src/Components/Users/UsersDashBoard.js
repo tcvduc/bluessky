@@ -37,19 +37,19 @@ class UsersDashBoard extends Component {
   };
 
   componentDidUpdate = () => {
-    log("User dashboard did update");
+    //  log("User dashboard did update");
   };
 
   componentWillUnmount = () => {
-    log("User dashboard will unmount");
+    //  log("User dashboard will unmount");
   };
 
   render() {
-    const { username } = this.state.user;
     const { isLogout } = this.state;
     if (isLogout) {
       return <Redirect to="/social" />;
     }
+
     return (
       <Box
         display="flex"
@@ -58,7 +58,7 @@ class UsersDashBoard extends Component {
         alignItems="center"
         height="50vh"
       >
-        <div>{username} dashboard component</div>
+        <div>{this.state.user.username} dashboard component</div>
         <Button onClick={this.handleLogout}>Logout</Button>
       </Box>
     );

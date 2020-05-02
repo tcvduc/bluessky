@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import { withRouter, Redirect } from "react-router-dom";
 import UsersLogin from "./Users/UsersLogin";
 import UsersSignup from "./Users/UsersSignup";
-import UsersDashBoard from "./Users/UsersDashBoard";
+
 import SocialMedia from "./SocialMedia";
 
 import classnames from "classnames";
@@ -110,8 +110,8 @@ let log = console.log;
 class Social extends React.Component {
   state = {
     showUsersLogin: true,
-    showFooter: true,
-    dataSendToDashBoard: {},
+    loginStatus: false,
+
     isLogginSuccess: false,
   };
   // login
@@ -119,24 +119,11 @@ class Social extends React.Component {
     // log("footer is touching social");
     const { location } = this.props;
 
-    // history.push("/social/users/login");
-    // location.pathname = "/social/users/login";
-
-    // log(location);
-    // log(history);
-    // log("event " + event);
-
     if (location.pathname === "/social") {
       return true;
     } else if (location.pathname === "/users/login") {
       return false;
     }
-    // return true;
-  };
-
-  // signup
-  signupHandle = () => {
-    // log("footer touching social");
   };
 
   // logic không hợp lý
@@ -190,15 +177,6 @@ class Social extends React.Component {
     }
     return false;
   };
-  // Đăng nhập thành công thì component footer và userlogin chếch
-  handleLoginSuccess = (isloginSuccess) => {
-    // log(isloginSuccess);
-
-    if (isloginSuccess) {
-      this.hideUsersLogin();
-      this.hideFooterComponent();
-    }
-  };
 
   hideFooterComponent = () => {
     this.setState({
@@ -220,9 +198,22 @@ class Social extends React.Component {
   };
 
   componentDidUpdate = () => {
-    log("Social did update");
+    // log("Social did update");
+    const userInfor = localStorage.getItem("userInfor");
+
+    if (userInfor) {
+      this.setState({
+        isLogginSuccess: true,
+      });
+    }
   };
 
+  handleLoginStatus = (status) => {
+    this.setState({
+      loginStatus: status,
+    });
+    // log(this.state.loginStatus);
+  };
   // quan hệ social - userlogin - user dasboard
 
   // Làm hiệu ứng slider - test từ hover sang click rồi sang handle
@@ -230,7 +221,7 @@ class Social extends React.Component {
   // Làm từ CSS sang material ui
   render() {
     const { classes } = this.props;
-    const { showUsersLogin, showFooter, isLogginSuccess } = this.state;
+    const { isLogginSuccess } = this.state;
     if (isLogginSuccess) {
       return <Redirect to="/users/dashboard" />;
     }
@@ -257,11 +248,7 @@ class Social extends React.Component {
                   [classes.showUsersLogin]: this.showUsersLogin() === true,
                 })}
               >
-                {showUsersLogin ? (
-                  <UsersLogin onLogin={this.handleLoginSuccess} />
-                ) : (
-                  <UsersDashBoard />
-                )}
+                <UsersLogin loginStatus={this.handleLoginStatus} />
               </div>
               <div
                 className={classnames(classes.child, classes.child_3, {
@@ -274,14 +261,7 @@ class Social extends React.Component {
           </Box>
         </Grid>
         <Grid item className={classes.footer_coponent_css}>
-          {showFooter ? (
-            <Footer
-              loginHandle={this.loginHandle}
-              signupHandle={this.signupHandle}
-            />
-          ) : (
-            ""
-          )}
+          <Footer loginHandle={this.loginHandle} />
         </Grid>
       </Grid>
     );
