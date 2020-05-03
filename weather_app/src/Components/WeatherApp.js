@@ -136,7 +136,7 @@ const styles = (theme) => ({
     },
     // 600 - 960
     [theme.breakpoints.up("sm")]: {
-      height: "22%",
+      height: "13%",
     },
     // > 960
     [theme.breakpoints.up("md")]: {

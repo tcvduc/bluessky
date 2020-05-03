@@ -130,23 +130,6 @@ function Home(props) {
   // status default
   const [statusWeather, setStausWeather] = React.useState(0);
 
-  React.useEffect(() => {
-    async function handleStatusWeather() {
-      // const devURL = "http://localhost:5000";
-      const productionsURL = "https://bluessky.herokuapp.com";
-      await Axios.get(`${productionsURL}/weather/status`)
-        .then((iconStatus) => {
-          setStausWeather(iconStatus.data.iconStatus);
-          //log(iconStatus.data.iconStatus);
-        })
-        .catch((e) => {
-          log(e);
-        });
-      //   log(props);
-    }
-    handleStatusWeather();
-  }, []);
-
   // status of result
 
   const handleStatusResult = () => {

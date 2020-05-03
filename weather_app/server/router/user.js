@@ -146,6 +146,18 @@ Userrouter.patch("/users/:id", async (req, res) => {
   }
 });
 
+// del all user
+Userrouter.delete("/users", async (req, res) => {
+  try {
+    const delAllUser = await User.deleteMany();
+    if (delAllUser) {
+      res.status(200).send("Deleted all user!");
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
 // delete user - delete method
 Userrouter.delete("/users/:id", async (req, res) => {
   const _id = req.params.id;

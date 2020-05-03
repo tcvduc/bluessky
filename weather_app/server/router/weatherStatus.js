@@ -1,22 +1,22 @@
 const express = require("express");
-const path = require("path");
+// const path = require("path");
 const weatherStatusRouter = new express.Router();
 const geocoding = require("./../../src/utils/geocoding");
 const forecast = require("./../../src/utils/forecast");
 
-let log = console.log;
+// let log = console.log;
 
 // Tạm thời lấy vị trí hồ chí minh để lấy render icon mưa hay nắng
 
 weatherStatusRouter.get("/weather/status", (req, res) => {
   const location = "Hồ Chí Minh, Việt Nam";
 
-  const devURL = "http://localhost:5000";
+  // const devURL = "http://localhost:5000";
   // const proURL = "uessky.herokuapp.com";
 
   geocoding(location, (geo_er, geo_res) => {
     if (geo_er) {
-      res.send(er.message);
+      res.send(geo_er.message);
     }
     const geo_data = geo_res.features.map((feature) => {
       return {

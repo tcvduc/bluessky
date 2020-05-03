@@ -1,7 +1,24 @@
 import React, { Component } from "react";
 import { Box, Button } from "@material-ui/core";
 import { Redirect } from "react-router-dom";
+import Todolist from "./../Todolist/Todolist";
 
+import { withStyles } from "@material-ui/core";
+
+const style = (theme) => ({
+  root: {
+    width: "100%",
+  },
+  cl_white: {
+    color: "white",
+  },
+  h_80: {
+    height: "80%",
+  },
+  h_20: {
+    height: "15%",
+  },
+});
 let log = console.log;
 class UsersDashBoard extends Component {
   state = {
@@ -24,7 +41,7 @@ class UsersDashBoard extends Component {
     localStorage.removeItem("userInfor");
   };
   componentDidMount = () => {
-    log("User dashboard didmount");
+    // log("User dashboard didmount");
     const userInfor = localStorage.getItem("userInfor");
     if (userInfor) {
       const jsonUserInfor = JSON.parse(userInfor);
@@ -49,20 +66,28 @@ class UsersDashBoard extends Component {
     if (isLogout) {
       return <Redirect to="/social" />;
     }
+    const { classes } = this.props;
 
     return (
       <Box
         display="flex"
         flexDirection="column"
-        justifyContent="center"
+        justifyContent="space-between"
         alignItems="center"
-        height="50vh"
+        height="100%"
       >
-        <div>{this.state.user.username} dashboard component</div>
-        <Button onClick={this.handleLogout}>Logout</Button>
+        <div className={classes.h_20}>{this.state.user.username} TodoList</div>
+        <div id="user_main" className={classes.root + " " + classes.h_80}>
+          <Todolist />
+        </div>
+        <div className={classes.h_20}>
+          <Button onClick={this.handleLogout} className={classes.cl_white}>
+            Logout
+          </Button>
+        </div>
       </Box>
     );
   }
 }
 
-export default UsersDashBoard;
+export default withStyles(style)(UsersDashBoard);
