@@ -18,6 +18,9 @@ const style = (theme) => ({
   cl_white: {
     color: "white",
   },
+  cl_black: {
+    color: "black",
+  },
   w_100: {
     width: "100%",
   },
@@ -37,8 +40,6 @@ const style = (theme) => ({
   },
   btn_del_item: {},
   task_item_pure_css: {
-    border: "2px solid white",
-    borderRadius: "10px",
     padding: "5px",
     "& li": {
       listStyle: "none",
@@ -48,17 +49,44 @@ const style = (theme) => ({
     },
     display: "flex",
     justifyContent: "space-between",
+    transition: "0.1s",
   },
   completed: {
+    border: "2px solid black",
+    borderRadius: "10px",
     textDecoration: "line-through",
+    color: "black",
+  },
+  in_completed: {
+    border: "2px solid white",
+    borderRadius: "10px",
+    textDecoration: "none",
+
+    color: "white",
   },
 });
+
+let log = console.log;
 class TaskItem extends Component {
+  state = {};
+  handleItemClick = (event) => {
+    const { itemClick } = this.props;
+    itemClick();
+    //  log(completed);
+  };
+
+  // del item btn click
+  handleDelItemClick = (event) => {
+    event.stopPropagation();
+    const { delItem, id } = this.props;
+    delItem(id);
+  };
   render() {
     const { id, description, completed, classes } = this.props;
 
     return (
       <div
+        onClick={this.handleItemClick}
         className={classnames(
           classes.w_100,
           classes.task_item_pure_css,
@@ -66,15 +94,21 @@ class TaskItem extends Component {
           classes.mb_15,
           {
             [classes.completed]: completed,
+            [classes.in_completed]: !completed,
           }
         )}
       >
         <div className={classes.item_id}>{id} </div>
-        <li className={classnames(classes.cl_white, classes.item_description)}>
-          {description}
-        </li>
+        <li className={classnames(classes.item_description)}>{description}</li>
         <CustomButton
-          className={(classes.btn_del_item, classes.cl_white)}
+          onClick={this.handleDelItemClick}
+          className={
+            (classes.btn_del_item,
+            {
+              [classes.cl_white]: !completed,
+              [classes.cl_black]: completed,
+            })
+          }
           variant="text"
         >
           X

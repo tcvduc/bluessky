@@ -38,6 +38,8 @@ app.use(socialRoute);
 app.use(apiRoute);
 app.use(assetsRoute);
 app.use(weatherStatusRoute);
+
+
 const port = process.env.PORT;
 
 app.get("*", (req, res) => {

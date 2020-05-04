@@ -1,8 +1,9 @@
 const express = require("express");
 const User = require("./../models/user");
-const Userrouter = new express.Router();
 const auth = require("./../middleware/auth");
-const { sendWelcomeMail } = require("./../email/account");
+const path = require("path");
+const Userrouter = new express.Router();
+
 let log = console.log;
 
 // create user - post method - sign up
@@ -36,7 +37,6 @@ Userrouter.post("/users/sign-up", async (req, res) => {
       // log("Create user successfully!");
       //   res.status(200).send("Create user successfully!");
 
-      sendWelcomeMail(newUser.email, newUser.name); // send welcome email
       res.send({
         message: "Create user successfully!",
         status: 200,
@@ -51,6 +51,12 @@ Userrouter.post("/users/sign-up", async (req, res) => {
     }
   }
 });
+
+// login - get
+Userrouter.get("/users/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../build", "index.html"));
+});
+
 // login - post
 Userrouter.post("/users/login", async (req, res) => {
   const { username, password } = req.body;

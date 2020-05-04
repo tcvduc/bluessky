@@ -3,7 +3,29 @@ import { TextField, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core";
 
 const CustomInput = withStyles((theme) => ({
-  root: {},
+  root: {
+    "& label": {
+      color: "white",
+    },
+    "& label.Mui-focused": {
+      color: "black",
+    },
+    "& .Mui-focused": {
+      // Khi focus thì black, không thì white
+      "& input": {
+        color: "black!important",
+      },
+    },
+    "& .MuiInput-underline:before": {
+      borderBottomColor: "white",
+    },
+    "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+      borderBottomColor: "white",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "black",
+    },
+  },
 }))(TextField);
 const CustomButton = withStyles((theme) => ({
   root: {
