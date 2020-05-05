@@ -9,6 +9,7 @@ const socialRoute = require("./router/social");
 const apiRoute = require("./router/api");
 const assetsRoute = require("./router/assets");
 const weatherStatusRoute = require("./router/weatherStatus");
+const forecastRouter = require("./router/forecast");
 let log = console.log;
 
 app.use(express.static(path.join(__dirname, "../build")));
@@ -38,7 +39,7 @@ app.use(socialRoute);
 app.use(apiRoute);
 app.use(assetsRoute);
 app.use(weatherStatusRoute);
-
+app.use(forecastRouter);
 
 const port = process.env.PORT;
 

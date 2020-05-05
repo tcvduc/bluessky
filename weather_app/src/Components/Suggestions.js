@@ -49,6 +49,7 @@ class Autocomplete extends Component {
     suggestions: [],
   };
 
+  // Thêm chức năng mới - đưa ra dự báo cho những ngày sau
   handleSearchClick = (event, index) => {
     const dataSuggestions = [...this.props.suggestions];
 
@@ -67,6 +68,17 @@ class Autocomplete extends Component {
         // khi có data rồi mới chuyển icon mưa hay nắng
         const { clickMeanUpdateStatusWeather } = this.props;
         clickMeanUpdateStatusWeather();
+      })
+      .catch((er) => {
+        log(er);
+      });
+
+    // Dự báo thời tiết
+    this.props.forecast_loading(true);
+    Axios.get(`${devURL}/api/forecast/${keywords}`)
+      .then((rs) => {
+        this.props.forecast_result(rs.data);
+        this.props.forecast_loading(false);
       })
       .catch((er) => {
         log(er);
@@ -132,6 +144,19 @@ const mapDispatchToProps = (dispatch) => {
     darksky_loading: (loading) => {
       dispatch({
         type: "DARKSKY_LOADING",
+        payload: loading,
+      });
+    },
+    // Dự báo thời tiết
+    forecast_result: (result) => {
+      dispatch({
+        type: "FORECAST_RESULT",
+        payload: result,
+      });
+    },
+    forecast_loading: (loading) => {
+      dispatch({
+        type: "FORECAST_LOADING",
         payload: loading,
       });
     },

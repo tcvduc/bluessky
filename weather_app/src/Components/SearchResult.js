@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "100%",
     padding: "0 20px",
+    overflow: "auto",
   },
   d_flex_end: {
     display: "flex",
@@ -65,6 +66,12 @@ const useStyles = makeStyles((theme) => ({
   popup: {
     animation: "popup 1s forwards",
   },
+  w_50: {
+    width: "50%",
+  },
+  fore_result_css: {
+    textAlign: "center",
+  },
 }));
 
 // let log = console.log;
@@ -79,6 +86,8 @@ function SearchResult(props) {
   const dataIndex = dataSearch.length - 1;
   const dataPutIntoSearchResul = dataSearch[dataIndex];
 
+  // Dự báo thời tiết
+  const { forecastResult, forecastLoading } = props;
   return (
     <Grid container className={classes.resultBg} spacing={3}>
       <Grid
@@ -155,6 +164,58 @@ function SearchResult(props) {
             : ""}
         </div>
       </Grid>
+
+      <div className={classnames(classes.popup_father)}>
+        <p
+          className={classnames(classes.popup_child, classes.popup_child_1, {
+            [classes.popup]: forecastLoading === false,
+          })}
+        >
+          {forecastResult.length > 0 ? "Dự báo thời tiết" : ""}
+        </p>
+      </div>
+      {/* dự báo thời tiết */}
+      <Grid
+        item
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+        xl={12}
+        className={classnames(classes.d_flex_center, classes.popup_father)}
+      >
+        <div
+          className={classnames(
+            classes.popup_child,
+            classes.popup_child_1,
+            classes.w_50,
+            classes.d_flex_center,
+            classes.fore_result_css,
+            {
+              [classes.popup]: forecastLoading === false,
+            }
+          )}
+        >
+          {forecastResult.length > 0 ? forecastResult[0][0].time : ""}
+        </div>
+        <div
+          className={classnames(
+            classes.popup_child,
+            classes.popup_child_1,
+            classes.w_50,
+            classes.d_flex_center,
+            classes.fore_result_css,
+            {
+              [classes.popup]: forecastLoading === false,
+            }
+          )}
+        >
+          {forecastResult.length > 0 ? forecastResult[0][1].time : ""}
+        </div>
+      </Grid>
+      <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+        {forecastResult.length > 0 ? forecastResult[0][4].time : "asd"}
+      </Grid>
     </Grid>
   );
 }
@@ -163,6 +224,9 @@ const mapStateToProps = (state) => {
   return {
     dataSearch: state.clientResult,
     darkskyLoading: state.darkskyLoading,
+    // dự báo thời tiết
+    forecastResult: state.forecastResult,
+    forecastLoading: state.forecastLoading,
   };
 };
 

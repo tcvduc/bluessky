@@ -35,6 +35,9 @@ const initState = {
   isLoading: false,
   darkskyLoading: false,
   // user
+  // dự báo thời tiết
+  forecastLoading: false,
+  forecastResult: [],
 };
 
 // root Reducer
@@ -84,6 +87,22 @@ const rootReducer = (state = initState, action) => {
       return {
         ...state,
         clientResult: newClientResult,
+      };
+    }
+
+    // Dự báo thời tiết
+    case "FORECAST_RESULT": {
+      const newforecastResult = [...state.forecastResult, action.payload];
+      return {
+        ...state,
+        forecastResult: newforecastResult,
+      };
+    }
+
+    case "FORECAST_LOADING": {
+      return {
+        ...state,
+        forecastLoading: action.payload,
       };
     }
 

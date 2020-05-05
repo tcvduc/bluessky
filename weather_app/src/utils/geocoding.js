@@ -1,4 +1,5 @@
 const request = require("request");
+const Axios = require("axios");
 
 const access_token = `pk.eyJ1IjoiYWludGR1YyIsImEiOiJjazZ5ZmhicG4wc3EyM21xbzR2M2IweGtjIn0.5Al9ddJcfoi7LwEk0ldFWw`;
 // let log = console.log;
@@ -24,6 +25,13 @@ function geocoding(keywords, callback) {
       return callback(undefined, res.body);
     }
   });
+  // Axios.get(geoCodingUrl)
+  //   .then((rs) => {
+  //     callback(undefined, rs);
+  //   })
+  //   .catch((er) => {
+  //     callback("No result for your key", undefined);
+  //   });
 }
 
 module.exports = geocoding;

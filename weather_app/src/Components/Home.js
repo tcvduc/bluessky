@@ -7,7 +7,6 @@ import SearchResult from "./SearchResult";
 import { ReactComponent as RainIcon } from "./../assets/svg/rain.svg";
 import { ReactComponent as SunIcon } from "./../assets/svg/sun.svg";
 import classnames from "classnames";
-import Axios from "axios";
 import { connect } from "react-redux";
 const usestyles = makeStyles((theme) => ({
   root: {},
