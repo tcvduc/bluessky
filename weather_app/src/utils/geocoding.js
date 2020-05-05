@@ -6,6 +6,7 @@ const access_token = `pk.eyJ1IjoiYWludGR1YyIsImEiOiJjazZ5ZmhicG4wc3EyM21xbzR2M2I
 // const geoCodingUrl =
 //   "http://api.mapbox.com/geocoding/v5/mapbox.places/hochiminh.json?access_token=pk.eyJ1IjoiYWludGR1YyIsImEiOiJjazZ5ZmhicG4wc3EyM21xbzR2M2IweGtjIn0.5Al9ddJcfoi7LwEk0ldFWw";
 
+// query tooo long bugss
 function geocoding(keywords, callback) {
   //keywords = keywords.replace(/\s/g, ""); // Xóa khoảng trắng của chuỗi
 

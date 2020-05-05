@@ -49,6 +49,7 @@ class Autocomplete extends Component {
     suggestions: [],
   };
 
+  // bugs mới - query too long khi search hà nội
   // Thêm chức năng mới - đưa ra dự báo cho những ngày sau
   handleSearchClick = (event, index) => {
     const dataSuggestions = [...this.props.suggestions];
@@ -56,12 +57,21 @@ class Autocomplete extends Component {
     // log(dataSuggestions);
     // log(index);
     const keywords = dataSuggestions[index];
+
+    //log(dataSuggestions);
     // log(dataSuggestions);
+
     const devURL = "http://localhost:5000";
     // const productionsURL = "https://bluessky.herokuapp.com";
 
+    const latitude = dataSuggestions[index].latitude;
+    const longitude = dataSuggestions[index].longitude;
+    const place_name = dataSuggestions[index].place_name;
+
     this.props.darksky_loading(true);
-    Axios.get(`${devURL}/api/weather?search=${keywords}`)
+    Axios.get(
+      `${devURL}/api/weather?lat=${latitude}&long=${longitude}&place_name=${place_name}`
+    )
       .then((datas) => {
         this.props.client_result(datas.data);
         this.props.darksky_loading(false);
@@ -75,7 +85,7 @@ class Autocomplete extends Component {
 
     // Dự báo thời tiết
     this.props.forecast_loading(true);
-    Axios.get(`${devURL}/api/forecast/${keywords}`)
+    Axios.get(`${devURL}/api/forecast?lat=${latitude}&long=${longitude}`)
       .then((rs) => {
         this.props.forecast_result(rs.data);
         this.props.forecast_loading(false);
@@ -93,6 +103,7 @@ class Autocomplete extends Component {
     // khi trong giỏ gợi ý rỗng thì xuất kết quả
     return (
       <div id="suggestions" className={classes.root}>
+        {/* fixed query too long  */}
         {this.props.suggestions.map((suggest, index) => {
           return (
             <div
@@ -112,7 +123,7 @@ class Autocomplete extends Component {
                   this.handleSearchClick(event, index);
                 }}
               >
-                {suggest}
+                {suggest.place_name}
               </li>
             </div>
           );

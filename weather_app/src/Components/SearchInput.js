@@ -81,10 +81,14 @@ class SearchInput extends Component {
       .then((datas) => {
         // log(data.data); -> object includes lat long place
         //  log(datas);
-        const place_Suggestions = datas.data.map((data) => {
-          return data.place_name;
-        });
-        this.props.suggestions(place_Suggestions);
+
+        // fix query too long ngay chỗ này - lấy lat, long ra
+        // const place_Suggestions = datas.data.map((data) => {
+        //   return data.place_name;
+        // });
+        //this.props.suggestions(place_Suggestions);
+        this.props.suggestions(datas.data);
+
         this.props.isLoading(false);
       })
       .catch((err) => log(err));

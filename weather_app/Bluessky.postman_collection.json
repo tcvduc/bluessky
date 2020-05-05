@@ -1,0 +1,421 @@
+{
+	"info": {
+		"_postman_id": "1cf772d9-1adb-4c1c-879a-8aa52e636cc8",
+		"name": "Bluessky",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API Weather Result",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/weather?search=\"ha noi\"",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "\"ha noi\""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sugesstion API",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"search\":\"ok\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/suggests/geo_data?search=ok",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"suggests",
+						"geo_data"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "ok"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign-up users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"map21\",\n    \"password\": \"heo123\",\n    \"email\": \"heo21@yopmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/sign-up",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"sign-up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Users By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/5e92c58047d30435cc21c117",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"5e92c58047d30435cc21c117"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Their self - User",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTkyYzYxOWJkZDljMzM1ODBhYzUxOTciLCJpYXQiOjE1ODY3NjMwNzF9.8jeD0f1k9WieY1Doloqi5BMAkEXNI8YTp8nB4wlkcXw",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{url}}/users/me",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Users",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"ca heo update 2\",\n\t\"password\":\"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/5e92c58047d30435cc21c117",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"5e92c58047d30435cc21c117"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Users",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/5e92c55480eaef3fbc6f27dc",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"5e92c55480eaef3fbc6f27dc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Home Page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Users",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e8f2621a-e60e-40cf-a61a-447e29377c90",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4355fc9f-0491-49cc-9df6-dfa6c4589bf2",
+						"exec": [
+							"if(pm.response.code === 200){\r",
+							"    pm.environment.set('authToken',pm.response.json().token);\r",
+							"}\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"heo1\",\n    \"password\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout Users",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTkyYzYxOWJkZDljMzM1ODBhYzUxOTciLCJpYXQiOjE1ODY3NjMwNzF9.8jeD0f1k9WieY1Doloqi5BMAkEXNI8YTp8nB4wlkcXw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/users/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout All Device",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTkyYzYxOWJkZDljMzM1ODBhYzUxOTciLCJpYXQiOjE1ODY3NjM0ODN9.lMR3XOIYLgMwUN7jpVkcXFkkkVRacFMGxwgehTsKH0E",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/users/logoutalldevice",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"logoutalldevice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Weather Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/weather/status",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"weather",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Rain Icon",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/assets/svg/rain",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"assets",
+						"svg",
+						"rain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete All Users",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Forecast API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/forecast/ho chi minh",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"forecast",
+						"ho chi minh"
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "ok",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d98b5bdb-b76f-46ef-8bc7-3b672c310940",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c272eebf-05f3-4cbb-aa4f-c5e9801dac9b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

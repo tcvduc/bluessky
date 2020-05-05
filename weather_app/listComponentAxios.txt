@@ -1,5 +1,7 @@
-UsersLogin.js
-UsersSignUp.js
-Suggestions.js
-SearchInput.js
-Home.js
+UsersLogin.js - Login users
+UsersSignUp.js - Sign-up users
+Suggestions.js - API Weather Result, Forecast API
+SearchInput.js - Suggestions API
+
+
+// API name in post man 
