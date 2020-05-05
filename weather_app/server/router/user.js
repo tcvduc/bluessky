@@ -97,7 +97,7 @@ Userrouter.post("/users/logoutalldevice", auth, async (req, res) => {
 
 // read user - get method
 // read all user
-Userrouter.get("/users", async (req, res) => {
+Userrouter.get("/api/users", async (req, res) => {
   try {
     const users = await User.find();
     res.send(users);

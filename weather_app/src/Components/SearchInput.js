@@ -77,7 +77,7 @@ class SearchInput extends Component {
     //  log(location);
     const devURL = "http://localhost:5000";
     // const productionsURL = "https://bluessky.herokuapp.com";
-    Axios.get(`${devURL}/suggests/geo_data?search=${keyword}`)
+    Axios.get(`${devURL}/api/suggests/geo_data?search=${keyword}`)
       .then((datas) => {
         // log(data.data); -> object includes lat long place
         //  log(datas);

@@ -1,7 +1,7 @@
 const express = require("express");
 const forecastRouter = new express.Router();
 
-const forecast = require("./../../src/utils/forecast");
+const forecast = require("../../src/utils/forecast");
 const Axios = require("axios");
 let log = console.log;
 

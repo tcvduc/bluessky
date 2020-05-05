@@ -3,13 +3,13 @@ require("./database/mongoose");
 const path = require("path");
 const app = express();
 const userRoute = require("./router/user");
-const suggestRoute = require("./router/suggest");
+const suggestAPIRoute = require("./router/suggestAPI");
 const homeRoute = require("./router/home");
 const socialRoute = require("./router/social");
-const apiRoute = require("./router/api");
+const weatherAPIroute = require("./router/weatherAPI");
 const assetsRoute = require("./router/assets");
 const weatherStatusRoute = require("./router/weatherStatus");
-const forecastRouter = require("./router/forecast");
+const forecastAPIRouter = require("./router/forecastAPI");
 let log = console.log;
 
 app.use(express.static(path.join(__dirname, "../build")));
@@ -33,13 +33,13 @@ app.use(function (req, res, next) {
 });
 // Routing
 app.use(userRoute);
-app.use(suggestRoute);
+app.use(suggestAPIRoute);
 app.use(homeRoute);
 app.use(socialRoute);
-app.use(apiRoute);
+app.use(weatherAPIroute);
 app.use(assetsRoute);
 app.use(weatherStatusRoute);
-app.use(forecastRouter);
+app.use(forecastAPIRouter);
 
 const port = process.env.PORT;
 

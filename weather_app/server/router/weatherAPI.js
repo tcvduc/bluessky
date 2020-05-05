@@ -1,7 +1,7 @@
 const express = require("express");
 const apiRouter = new express.Router();
 
-const forecast = require("./../../src/utils/forecast");
+const forecast = require("../../src/utils/forecast");
 
 let log = console.log;
 apiRouter.get("/api/weather", async (req, res) => {

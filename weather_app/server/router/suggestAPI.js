@@ -1,8 +1,8 @@
 const express = require("express");
 const suggestRouter = new express.Router();
-const geocoding = require("./../../src/utils/geocoding");
+const geocoding = require("../../src/utils/geocoding");
 // autocompleted
-suggestRouter.get("/suggests/geo_data", (req, res) => {
+suggestRouter.get("/api/suggests/geo_data", (req, res) => {
   const { search } = req.query;
   geocoding(search, (geo_err, geo_res) => {
     if (geo_err) {
