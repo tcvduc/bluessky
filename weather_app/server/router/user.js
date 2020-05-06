@@ -63,7 +63,7 @@ Userrouter.post("/users/login", async (req, res) => {
   try {
     const user = await User.findByCredentials(username, password);
     const token = await user.generateAuthToken();
-    res.send({ user, token });
+    res.send({ user, token, message: "Login success!" });
   } catch (error) {
     res.status(500).send(error.message);
 

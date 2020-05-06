@@ -82,7 +82,7 @@ const SubmitButton = withStyles((theme) => ({
   },
 }))(Button);
 
-// let log = console.log;
+let log = console.log;
 
 class UsersLogin extends React.Component {
   state = {
@@ -107,6 +107,8 @@ class UsersLogin extends React.Component {
     await Axios.post(`${devURL}/users/login`, { username, password })
       .then((rs) => {
         const { data } = rs;
+
+        // log(data);
 
         if (data) {
           localStorage.setItem("userInfor", JSON.stringify(data));

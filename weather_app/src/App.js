@@ -106,6 +106,13 @@ const rootReducer = (state = initState, action) => {
       };
     }
 
+    case "CLEAR_FORECAST_RESULT": {
+      const newForecastResult = [];
+      return {
+        ...state,
+        forecastResult: newForecastResult,
+      };
+    }
     default:
       break;
   }

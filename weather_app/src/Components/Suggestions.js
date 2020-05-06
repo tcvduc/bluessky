@@ -96,6 +96,7 @@ class Autocomplete extends Component {
 
     // clear suggestions
     this.props.clear_suggestions();
+    this.props.clear_forecast_result();
   };
   render() {
     const { classes } = this.props;
@@ -169,6 +170,11 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({
         type: "FORECAST_LOADING",
         payload: loading,
+      });
+    },
+    clear_forecast_result: () => {
+      dispatch({
+        type: "CLEAR_FORECAST_RESULT",
       });
     },
   };

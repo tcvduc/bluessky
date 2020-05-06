@@ -54,6 +54,7 @@ let log = console.log;
 class TaskInput extends Component {
   state = {
     inputValue: "",
+    description: "",
   };
   handleSubmit = (event) => {
     event.preventDefault();

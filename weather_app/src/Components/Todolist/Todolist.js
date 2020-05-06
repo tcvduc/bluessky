@@ -3,23 +3,25 @@ import TaskList from "./TaskList";
 import TaskInput from "./TaskInput";
 import TaskItem from "./TaskItem";
 import { withStyles } from "@material-ui/core";
-
+import Axios from "axios";
 const style = (theme) => ({
   root: {
     width: "100%",
   },
 });
 
-// let log = console.log;
+let log = console.log;
 
 class Todolist extends Component {
   state = {
     tasks: [],
+    token: "",
+    user: {},
   };
 
   // handle addTask
   handleAddTask = (task) => {
-    //  log(task);
+    // log(task);
     const oldData = [...this.state.tasks];
     // log(oldData);
     if (oldData.length > 0) {
@@ -47,6 +49,70 @@ class Todolist extends Component {
         tasks: newData,
       });
     }
+  };
+
+  // Khi didmount kiểm tra token - lấy data của user đó
+  componentDidMount = () => {
+    // axios
+    // log("Todolist did mount");
+    const devURL = "http://localhost:5000";
+    //  const proURL = "https://bluessky.herokuapp.com";
+    const userInfor = localStorage.getItem("userInfor");
+    if (userInfor) {
+      // parse it
+      const userJSON = JSON.parse(userInfor);
+
+      const { token, user } = userJSON;
+      this.setState({
+        token: token,
+        user: user,
+      });
+      // log(token);
+
+      // new bug please authenticate
+      // fixed authenticate 
+
+      let config = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
+
+      Axios.get(`${devURL}/tasks`, config)
+        .then((rs) => {
+          this.setState({
+            tasks: rs.data,
+          });
+          // log(rs);
+        })
+        .catch((er) => {
+          log(er.response);
+        });
+    }
+
+    // let data = {
+    //   HTTP_CONTENT_LANGUAGE: self.language,
+    // };
+
+    // log(token);
+
+    // get all task of this user
+
+    // Axios.post(`${devURL}/tasks`, {
+    //   description: "ok",
+    // })
+    //   .then((result) => {
+    //     log(result);
+    //   })
+    //   .catch((e) => {
+    //     log(e.response);
+    //   });
+  };
+
+  componentDidUpdate = () => {
+    // log("Todolist did update");
+    // const { user } = this.state;
+    // log(user);
   };
 
   // handleItemClick - click thì đổi completed

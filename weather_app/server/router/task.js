@@ -82,7 +82,8 @@ taskRouter.get("/tasks/:id", auth, async (req, res) => {
 // create task
 taskRouter.post("/tasks", auth, async (req, res) => {
   const data = req.body;
-
+  log(data);
+  log(req.user);
   const task = new Task({
     ...data,
     owner: req.user._id,

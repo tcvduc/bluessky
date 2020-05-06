@@ -102,13 +102,10 @@ class TaskItem extends Component {
         <li className={classnames(classes.item_description)}>{description}</li>
         <CustomButton
           onClick={this.handleDelItemClick}
-          className={
-            (classes.btn_del_item,
-            {
-              [classes.cl_white]: !completed,
-              [classes.cl_black]: completed,
-            })
-          }
+          className={classnames(classes.btn_del_item, {
+            [classes.cl_white]: !completed,
+            [classes.cl_black]: completed,
+          })}
           variant="text"
         >
           X
