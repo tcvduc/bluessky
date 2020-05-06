@@ -10,7 +10,7 @@ const style = (theme) => ({
   },
 });
 
-let log = console.log;
+// let log = console.log;
 
 class Todolist extends Component {
   state = {

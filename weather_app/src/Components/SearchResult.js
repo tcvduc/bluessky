@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "transparent",
     width: "100%",
     height: "100%",
-    padding: "0 20px",
+    padding: 0,
     overflow: "auto",
   },
   d_flex_end: {
@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   d_flex_center: {
     display: "flex",
     justifyContent: "center",
+    alignItems: "center",
   },
   time_and_icon: {
     alignItems: "center",
@@ -55,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "transparent",
     width: "100%,",
     overflow: "hidden",
+    padding: 20,
   },
   popup_child: {
     backgroundColor: "transparent",
@@ -69,9 +71,23 @@ const useStyles = makeStyles((theme) => ({
   w_50: {
     width: "50%",
   },
-  fore_result_css: {
+  forecast_result_css: {
     textAlign: "center",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
   },
+  result_pure_css: {
+    width: "100%",
+
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    marginTop: 15,
+  },
+  forecast_pure_css: {},
 }));
 
 // let log = console.log;
@@ -89,7 +105,7 @@ function SearchResult(props) {
   // Dự báo thời tiết
   const { forecastResult, forecastLoading } = props;
   return (
-    <Grid container className={classes.resultBg} spacing={3}>
+    <Grid container className={classes.resultBg}>
       <Grid
         className={classnames(
           classes.d_flex_center,
@@ -164,17 +180,25 @@ function SearchResult(props) {
             : ""}
         </div>
       </Grid>
-
-      <div className={classnames(classes.popup_father)}>
+      {/* dự báo thời tiết */}
+      <Grid
+        item
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+        xl={12}
+        className={classnames(classes.popup_father)}
+      >
         <p
           className={classnames(classes.popup_child, classes.popup_child_1, {
             [classes.popup]: forecastLoading === false,
           })}
         >
-          {forecastResult.length > 0 ? "Dự báo thời tiết" : ""}
+          {forecastResult.length > 0 ? "forecast" : ""}
         </p>
-      </div>
-      {/* dự báo thời tiết */}
+      </Grid>
+      {/* dòng 1 */}
       <Grid
         item
         xs={12}
@@ -189,32 +213,257 @@ function SearchResult(props) {
             classes.popup_child,
             classes.popup_child_1,
             classes.w_50,
-            classes.d_flex_center,
-            classes.fore_result_css,
+
+            classes.forecast_result_css,
             {
               [classes.popup]: forecastLoading === false,
             }
           )}
         >
-          {forecastResult.length > 0 ? forecastResult[0][0].time : ""}
+          <div className={classes.time_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][0].time : ""}
+          </div>
+          <div className={classes.icon_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][0].icon : ""}
+          </div>
+          <div className={classes.summary_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][0].summary : ""}
+          </div>
+          <div className={classes.temperature_forecast}>
+            {forecastResult.length > 0
+              ? forecastResult[0][0].temperatureMax
+              : ""}
+          </div>
         </div>
+
         <div
           className={classnames(
             classes.popup_child,
             classes.popup_child_1,
             classes.w_50,
-            classes.d_flex_center,
-            classes.fore_result_css,
+
+            classes.forecast_result_css,
             {
               [classes.popup]: forecastLoading === false,
             }
           )}
         >
-          {forecastResult.length > 0 ? forecastResult[0][1].time : ""}
+          <div className={classes.time_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][1].time : ""}
+          </div>
+          <div className={classes.icon_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][1].icon : ""}
+          </div>
+          <div className={classes.summary_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][1].summary : ""}
+          </div>
+          <div className={classes.temperature_forecast}>
+            {forecastResult.length > 0
+              ? forecastResult[0][1].temperatureMax
+              : ""}
+          </div>
         </div>
       </Grid>
-      <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-        {forecastResult.length > 0 ? forecastResult[0][4].time : "asd"}
+
+      {/* dòng 2 */}
+      <Grid
+        item
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+        xl={12}
+        className={classnames(classes.d_flex_center, classes.popup_father)}
+      >
+        <div
+          className={classnames(
+            classes.popup_child,
+            classes.popup_child_1,
+            classes.w_50,
+
+            classes.forecast_result_css,
+            {
+              [classes.popup]: forecastLoading === false,
+            }
+          )}
+        >
+          <div className={classes.time_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][2].time : ""}
+          </div>
+          <div className={classes.icon_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][2].icon : ""}
+          </div>
+          <div className={classes.summary_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][2].summary : ""}
+          </div>
+          <div className={classes.temperature_forecast}>
+            {forecastResult.length > 0
+              ? forecastResult[0][2].temperatureMax
+              : ""}
+          </div>
+        </div>
+
+        <div
+          className={classnames(
+            classes.popup_child,
+            classes.popup_child_1,
+            classes.w_50,
+
+            classes.forecast_result_css,
+            {
+              [classes.popup]: forecastLoading === false,
+            }
+          )}
+        >
+          <div className={classes.time_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][3].time : ""}
+          </div>
+          <div className={classes.icon_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][3].icon : ""}
+          </div>
+          <div className={classes.summary_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][3].summary : ""}
+          </div>
+          <div className={classes.temperature_forecast}>
+            {forecastResult.length > 0
+              ? forecastResult[0][3].temperatureMax
+              : ""}
+          </div>
+        </div>
+      </Grid>
+
+      {/* dòng 3 */}
+      <Grid
+        item
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+        xl={12}
+        className={classnames(classes.d_flex_center, classes.popup_father)}
+      >
+        <div
+          className={classnames(
+            classes.popup_child,
+            classes.popup_child_1,
+            classes.w_50,
+
+            classes.forecast_result_css,
+            {
+              [classes.popup]: forecastLoading === false,
+            }
+          )}
+        >
+          <div className={classes.time_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][4].time : ""}
+          </div>
+          <div className={classes.icon_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][4].icon : ""}
+          </div>
+          <div className={classes.summary_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][4].summary : ""}
+          </div>
+          <div className={classes.temperature_forecast}>
+            {forecastResult.length > 0
+              ? forecastResult[0][4].temperatureMax
+              : ""}
+          </div>
+        </div>
+
+        <div
+          className={classnames(
+            classes.popup_child,
+            classes.popup_child_1,
+            classes.w_50,
+
+            classes.forecast_result_css,
+            {
+              [classes.popup]: forecastLoading === false,
+            }
+          )}
+        >
+          <div className={classes.time_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][5].time : ""}
+          </div>
+          <div className={classes.icon_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][5].icon : ""}
+          </div>
+          <div className={classes.summary_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][5].summary : ""}
+          </div>
+          <div className={classes.temperature_forecast}>
+            {forecastResult.length > 0
+              ? forecastResult[0][5].temperatureMax
+              : ""}
+          </div>
+        </div>
+      </Grid>
+
+      {/* dòng 4 */}
+      <Grid
+        item
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+        xl={12}
+        className={classnames(classes.d_flex_center, classes.popup_father)}
+      >
+        <div
+          className={classnames(
+            classes.popup_child,
+            classes.popup_child_1,
+            classes.w_50,
+
+            classes.forecast_result_css,
+            {
+              [classes.popup]: forecastLoading === false,
+            }
+          )}
+        >
+          <div className={classes.time_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][6].time : ""}
+          </div>
+          <div className={classes.icon_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][6].icon : ""}
+          </div>
+          <div className={classes.summary_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][6].summary : ""}
+          </div>
+          <div className={classes.temperature_forecast}>
+            {forecastResult.length > 0
+              ? forecastResult[0][6].temperatureMax
+              : ""}
+          </div>
+        </div>
+
+        <div
+          className={classnames(
+            classes.popup_child,
+            classes.popup_child_1,
+            classes.w_50,
+
+            classes.forecast_result_css,
+            {
+              [classes.popup]: forecastLoading === false,
+            }
+          )}
+        >
+          <div className={classes.time_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][7].time : ""}
+          </div>
+          <div className={classes.icon_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][7].icon : ""}
+          </div>
+          <div className={classes.summary_forecast}>
+            {forecastResult.length > 0 ? forecastResult[0][7].summary : ""}
+          </div>
+          <div className={classes.temperature_forecast}>
+            {forecastResult.length > 0
+              ? forecastResult[0][7].temperatureMax
+              : ""}
+          </div>
+        </div>
       </Grid>
     </Grid>
   );

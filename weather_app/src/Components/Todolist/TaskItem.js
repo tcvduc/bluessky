@@ -66,7 +66,7 @@ const style = (theme) => ({
   },
 });
 
-let log = console.log;
+// let log = console.log;
 class TaskItem extends Component {
   state = {};
   handleItemClick = (event) => {

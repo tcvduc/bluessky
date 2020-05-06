@@ -19,7 +19,7 @@ const style = (theme) => ({
     height: "15%",
   },
 });
-let log = console.log;
+// let log = console.log;
 class UsersDashBoard extends Component {
   state = {
     user: {},

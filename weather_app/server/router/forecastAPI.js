@@ -5,7 +5,7 @@ const forecast = require("../../src/utils/forecast");
 const Axios = require("axios");
 let log = console.log;
 
-forecastRouter.get("/api/forecast", async (req, res) => {
+forecastRouter.get("/api/forecast", (req, res) => {
   //log(req.query);
 
   // bugs mới query to long @_@ - fix dc r - ôn lại req.query
@@ -32,7 +32,7 @@ forecastRouter.get("/api/forecast", async (req, res) => {
     //   });
 
     // bugs cannot get data from a promise
-    // holy shit fix được bugs này r - promise.all - async await in map
+    // fix  -> promise.all - async await in map
     const fore_data = await Promise.all(
       fore_res.daily.data.map(async (data) => {
         return {

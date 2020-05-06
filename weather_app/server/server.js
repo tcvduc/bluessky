@@ -10,6 +10,7 @@ const weatherAPIroute = require("./router/weatherAPI");
 const assetsRoute = require("./router/assets");
 const weatherStatusRoute = require("./router/weatherStatus");
 const forecastAPIRouter = require("./router/forecastAPI");
+const taskRouter = require("./router/task");
 let log = console.log;
 
 app.use(express.static(path.join(__dirname, "../build")));
@@ -40,6 +41,7 @@ app.use(weatherAPIroute);
 app.use(assetsRoute);
 app.use(weatherStatusRoute);
 app.use(forecastAPIRouter);
+app.use(taskRouter);
 
 const port = process.env.PORT;
 

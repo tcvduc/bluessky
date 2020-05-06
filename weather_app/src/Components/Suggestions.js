@@ -56,7 +56,7 @@ class Autocomplete extends Component {
 
     // log(dataSuggestions);
     // log(index);
-    const keywords = dataSuggestions[index];
+    // const keywords = dataSuggestions[index];
 
     //log(dataSuggestions);
     // log(dataSuggestions);

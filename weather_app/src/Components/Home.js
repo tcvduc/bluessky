@@ -99,7 +99,7 @@ function RealTimeClock() {
   return { hour, minute, second };
 }
 
-let log = console.log;
+// let log = console.log;
 //  học hook cái này - có chức năng gì làm bằng hook hết
 // list chức năng: chuyển icon mưa nắng, thời gian tự động
 function Home(props) {
