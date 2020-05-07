@@ -5,7 +5,7 @@ const taskRouter = new express.Router();
 
 let log = console.log;
 
-// change task
+// update task
 taskRouter.patch("/tasks/:id", auth, async (req, res) => {
   const _id = req.params.id;
   // validate update field
@@ -27,7 +27,10 @@ taskRouter.patch("/tasks/:id", auth, async (req, res) => {
     if (!task) {
       return res.status(404).send("Không tìm thấy task!");
     }
-    res.send(task);
+    res.send({
+      task,
+      message: "Thay đổi thành công!",
+    });
   } catch (error) {
     res.status(500).send(error);
   }
@@ -82,8 +85,8 @@ taskRouter.get("/tasks/:id", auth, async (req, res) => {
 // create task
 taskRouter.post("/tasks", auth, async (req, res) => {
   const data = req.body;
-  log(data);
-  log(req.user);
+  // log(data);
+  //log(req.user);
   const task = new Task({
     ...data,
     owner: req.user._id,
@@ -91,7 +94,10 @@ taskRouter.post("/tasks", auth, async (req, res) => {
 
   try {
     await task.save();
-    res.status(201).send(task);
+    res.status(201).send({
+      task,
+      message: "Thêm thành công!",
+    });
   } catch (error) {
     log(error);
     res.status(500).send(error);

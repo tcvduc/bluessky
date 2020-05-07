@@ -41,6 +41,7 @@ const style = (theme) => ({
   btn_del_item: {},
   task_item_pure_css: {
     padding: "5px",
+    paddingLeft: 20,
     "& li": {
       listStyle: "none",
       display: "flex",
@@ -79,10 +80,24 @@ class TaskItem extends Component {
   handleDelItemClick = (event) => {
     event.stopPropagation();
     const { delItem, id } = this.props;
+    // log(id);
     delItem(id);
   };
+
+  componentDidMount = () => {
+    // log("Item didmount");
+  };
+
+  componentDidUpdate = () => {
+    // log("Item didupdate");
+  };
+
+  componentWillUnmount = () => {
+    // log("item willunmount");
+  };
+
   render() {
-    const { id, description, completed, classes } = this.props;
+    const { description, completed, classes } = this.props;
 
     return (
       <div
@@ -98,7 +113,7 @@ class TaskItem extends Component {
           }
         )}
       >
-        <div className={classes.item_id}>{id} </div>
+        {/* <div className={classes.item_id}>{id} </div> */}
         <li className={classnames(classes.item_description)}>{description}</li>
         <CustomButton
           onClick={this.handleDelItemClick}

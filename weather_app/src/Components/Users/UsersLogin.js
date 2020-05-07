@@ -82,7 +82,7 @@ const SubmitButton = withStyles((theme) => ({
   },
 }))(Button);
 
-let log = console.log;
+// let log = console.log;
 
 class UsersLogin extends React.Component {
   state = {

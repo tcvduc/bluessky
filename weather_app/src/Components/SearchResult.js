@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   d_flex_center: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-start",
   },
   time_and_icon: {
     alignItems: "center",
@@ -43,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
 
   mr_10: {
     marginRight: 10,
+  },
+  ml_10: {
+    marginLeft: 10,
   },
   linear: {
     width: "100%",
@@ -75,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
     textAlign: "center",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "column",
   },
@@ -189,7 +192,7 @@ function SearchResult(props) {
         md={12}
         lg={12}
         xl={12}
-        className={classnames(classes.popup_father)}
+        className={classnames(classes.popup_father, classes.ml_10)}
       >
         <p
           className={classnames(classes.popup_child, classes.popup_child_1, {

@@ -3,7 +3,7 @@ const forecastRouter = new express.Router();
 
 const forecast = require("../../src/utils/forecast");
 const Axios = require("axios");
-let log = console.log;
+// let log = console.log;
 
 forecastRouter.get("/api/forecast", (req, res) => {
   //log(req.query);
@@ -37,6 +37,7 @@ forecastRouter.get("/api/forecast", (req, res) => {
       fore_res.daily.data.map(async (data) => {
         return {
           time: await convertTimeStamp(data.time),
+          summary: data.summary,
           icon: data.icon,
           temperatureMax: data.temperatureMax,
         };

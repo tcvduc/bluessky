@@ -1,7 +1,10 @@
-UsersLogin.js - Login users
-UsersSignUp.js - Sign-up users
-Suggestions.js - API Weather Result, Forecast API
-SearchInput.js - Suggestions API
+File name       -        API name
+
+UsersLogin.js   -        Login users
+UsersSignUp.js  -        Sign-up users
+Suggestions.js  -        API Weather Result, Forecast API
+SearchInput.js  -        Suggestions API
+Todolist.js     -        Create Task, Get All Task, Update Task By Id, Delete Task By Id
 
 
 // API name in post man 
