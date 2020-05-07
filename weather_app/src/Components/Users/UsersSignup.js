@@ -79,6 +79,9 @@ const SubmitButton = withStyles((theme) => ({
   },
 }))(Button);
 // let log = console.log;
+
+//const devURL = "http://localhost:5000";
+const proURL = "https://bluessky.herokuapp.com";
 class UsersSignup extends Component {
   state = {
     username: "",
@@ -123,9 +126,7 @@ class UsersSignup extends Component {
     // log(dataSendToServer);
     // axios
 
-    const devURL = "http://localhost:5000";
-    //  const proURL = "https://bluessky.herokuapp.com";
-    await Axios.post(`${devURL}/users/sign-up`, dataSendToServer)
+    await Axios.post(`${proURL}/users/sign-up`, dataSendToServer)
       .then((result) => {
         const { data } = result;
         const { error } = data;

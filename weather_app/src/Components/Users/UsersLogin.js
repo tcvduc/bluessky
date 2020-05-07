@@ -84,6 +84,9 @@ const SubmitButton = withStyles((theme) => ({
 
 // let log = console.log;
 
+//const devURL = "http://localhost:5000";
+const proURL = "https://bluessky.herokuapp.com";
+
 class UsersLogin extends React.Component {
   state = {
     username: "",
@@ -101,10 +104,7 @@ class UsersLogin extends React.Component {
     // log(username, password);
     // onLogin();
 
-    const devURL = "http://localhost:5000";
-    // const productionsURL = "https://bluessky.herokuapp.com";
-
-    await Axios.post(`${devURL}/users/login`, { username, password })
+    await Axios.post(`${proURL}/users/login`, { username, password })
       .then((rs) => {
         const { data } = rs;
 
