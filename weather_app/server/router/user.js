@@ -2,9 +2,14 @@ const express = require("express");
 const User = require("./../models/user");
 const auth = require("./../middleware/auth");
 const path = require("path");
+
 const Userrouter = new express.Router();
 
+var localStorage = require("localStorage");
+
 let log = console.log;
+
+
 
 // create user - post method - sign up
 Userrouter.post("/users/sign-up", async (req, res) => {
@@ -110,6 +115,12 @@ Userrouter.get("/api/users", async (req, res) => {
 Userrouter.get("/users/me", auth, async (req, res) => {
   // log(req.user);
   res.send(req.user);
+});
+
+// read user by :id params
+Userrouter.get("/users/dashboard", async (req, res) => {
+  const userInfor = localStorage.getItem("userInfor");
+  log(userInfor);
 });
 
 // read user by :id params
