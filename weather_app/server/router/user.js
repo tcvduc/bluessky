@@ -5,11 +5,9 @@ const path = require("path");
 
 const Userrouter = new express.Router();
 
-var localStorage = require("localStorage");
+// var localStorage = require("localStorage");
 
 let log = console.log;
-
-
 
 // create user - post method - sign up
 Userrouter.post("/users/sign-up", async (req, res) => {
@@ -118,9 +116,13 @@ Userrouter.get("/users/me", auth, async (req, res) => {
 });
 
 // read user by :id params
+// bug khi vô dashboard thì bị lỗi cast ID
+// Không truy cập localstorage được nên chuyển cho react handle
 Userrouter.get("/users/dashboard", async (req, res) => {
-  const userInfor = localStorage.getItem("userInfor");
-  log(userInfor);
+  // const userInfor = localStorage.getItem("userInfor");
+
+  res.redirect("/users/login");
+  res.status(201).send("Redirect to /users/login");
 });
 
 // read user by :id params

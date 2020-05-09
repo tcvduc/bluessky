@@ -39,8 +39,8 @@ const style = (theme) => ({
 
 let log = console.log;
 
-//const devURL = "http://localhost:5000";
-const proURL = "https://bluessky.herokuapp.com";
+const devURL = "http://localhost:5000";
+// const proURL = "https://bluessky.herokuapp.com";
 
 // Làm hiệu ứng popup cho cái này
 // Từ hover trồi lên sang tự động trồi lên
@@ -70,7 +70,7 @@ class Autocomplete extends Component {
 
     this.props.darksky_loading(true);
     Axios.get(
-      `${proURL}/api/weather?lat=${latitude}&long=${longitude}&place_name=${place_name}`
+      `${devURL}/api/weather?lat=${latitude}&long=${longitude}&place_name=${place_name}`
     )
       .then((datas) => {
         this.props.client_result(datas.data);
@@ -85,7 +85,7 @@ class Autocomplete extends Component {
 
     // Dự báo thời tiết
     this.props.forecast_loading(true);
-    Axios.get(`${proURL}/api/forecast?lat=${latitude}&long=${longitude}`)
+    Axios.get(`${devURL}/api/forecast?lat=${latitude}&long=${longitude}`)
       .then((rs) => {
         this.props.forecast_result(rs.data);
         this.props.forecast_loading(false);

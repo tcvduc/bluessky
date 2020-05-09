@@ -14,6 +14,7 @@ const styles = (theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     height: "100vh",
+    width: "100vw",
     filter: "blur(0)",
     zIndex: 1,
   },
@@ -23,6 +24,7 @@ const styles = (theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     height: "100vh",
+    width: "100vw",
     filter: "blur(0)",
 
     zIndex: 1,

@@ -49,6 +49,11 @@ class UsersDashBoard extends Component {
       this.setState({
         user,
         token,
+        isLogout: false,
+      });
+    } else {
+      this.setState({
+        isLogout: true,
       });
     }
   };

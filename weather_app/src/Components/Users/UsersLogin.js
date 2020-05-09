@@ -84,8 +84,8 @@ const SubmitButton = withStyles((theme) => ({
 
 // let log = console.log;
 
-//const devURL = "http://localhost:5000";
-const proURL = "https://bluessky.herokuapp.com";
+const devURL = "http://localhost:5000";
+// const proURL = "https://bluessky.herokuapp.com";
 
 class UsersLogin extends React.Component {
   state = {
@@ -93,7 +93,7 @@ class UsersLogin extends React.Component {
     password: "",
     isloginSuccess: false,
   };
-  _isMount = false;
+
   // handle change login
   handleUsersLogin = async (event) => {
     event.preventDefault();
@@ -104,7 +104,7 @@ class UsersLogin extends React.Component {
     // log(username, password);
     // onLogin();
 
-    await Axios.post(`${proURL}/users/login`, { username, password })
+    await Axios.post(`${devURL}/users/login`, { username, password })
       .then((rs) => {
         const { data } = rs;
 
@@ -157,12 +157,9 @@ class UsersLogin extends React.Component {
 
   componentDidUpdate = () => {
     // log("userlogin did update - setstate");
-    this._isMount = true;
   };
 
-  componentWillUnmount = () => {
-    this._isMount = false;
-  };
+  componentWillUnmount = () => {};
   render() {
     const { classes } = this.props;
     return (
@@ -179,11 +176,13 @@ class UsersLogin extends React.Component {
             onSubmit={this.handleUsersLogin}
           >
             <UserTextField
+              autoComplete={false}
               label="Username"
               className={classes.mb_20}
               onChange={this.handleChangeUsersname}
             />
             <UserTextField
+              autoComplete={false}
               label="Password"
               className={classes.mb_20}
               type="password"

@@ -13,8 +13,8 @@ const style = (theme) => ({
 
 let log = console.log;
 
-//const devURL = "http://localhost:5000";
-const proURL = "https://bluessky.herokuapp.com";
+const devURL = "http://localhost:5000";
+//const proURL = "https://bluessky.herokuapp.com";
 
 // CRUD
 class Todolist extends Component {
@@ -60,7 +60,7 @@ class Todolist extends Component {
       // add node - bên node tự random id rồi nênh khỏi lấy _id
 
       // axios
-      Axios.post(`${proURL}/tasks`, dataAdd, config)
+      Axios.post(`${devURL}/tasks`, dataAdd, config)
         .then((rs) => {
           log(rs.data.message);
         })
@@ -111,7 +111,7 @@ class Todolist extends Component {
 
       // axios
       // get all task of this user
-      Axios.get(`${proURL}/tasks?sortBy=completed:asc&limit=max`, config)
+      Axios.get(`${devURL}/tasks?sortBy=completed:asc&limit=max`, config)
         .then((rs) => {
           this.setState({
             tasks: rs.data,
@@ -161,7 +161,7 @@ class Todolist extends Component {
       //log(completed);
       // axios
       Axios.patch(
-        `${proURL}/tasks/${_id}`,
+        `${devURL}/tasks/${_id}`,
         {
           completed,
         },
@@ -208,7 +208,7 @@ class Todolist extends Component {
       // log(_id);
       // Axios
 
-      Axios.delete(`${proURL}/tasks/${_id}`, config)
+      Axios.delete(`${devURL}/tasks/${_id}`, config)
         .then((rs) => {
           log(rs.data.message);
         })

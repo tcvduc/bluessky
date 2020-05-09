@@ -15,6 +15,11 @@ input {
   color: hsla(0, 0%, 100%, 1) !important;
 }
 
+
+input:-internal-autofill-selected {
+  background-color: transparent !important;
+}
+
 main {
   height: 100%;
   width: 100%;

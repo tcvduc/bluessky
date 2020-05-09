@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import Social from "./Social";
 import UsersDashBoard from "./Users/UsersDashBoard";
+import PageNotFound from "./PageNotFound";
 
 class Main extends Component {
   // routing right there
@@ -32,7 +33,7 @@ class Main extends Component {
             <Social />
           </Route>
           <Route>
-            <h1>Page not found</h1>
+            <PageNotFound />
           </Route>
         </Switch>
       </main>

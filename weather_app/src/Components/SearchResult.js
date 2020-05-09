@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     width: "50%",
   },
   forecast_result_css: {
-    padding: 10,
+    padding: 5,
     textAlign: "center",
     display: "flex",
     justifyContent: "flex-start",
