@@ -170,21 +170,19 @@ class UsersSignup extends Component {
             onSubmit={this.handleSubmitUsersSignup}
           >
             <UserTextField
-              autoComplete={false}
               className={classes.mb_20}
               label="Username"
               type="string"
               onChange={this.handleChangeUsersname}
             />
             <UserTextField
-              autoComplete={false}
               className={classes.mb_20}
               label="Password"
               type="password"
               onChange={this.handleChangePassword}
             />
             <UserTextField
-              autoComplete={false}
+        
               className={classes.mb_20}
               label="Email"
               type="email"

@@ -22,12 +22,14 @@ const style = (theme) => ({
   // popup effect
   popup_father: {
     backgroundColor: "transparent",
-    width: "100%,",
+
     overflow: "hidden",
   },
   popup_child: {
     backgroundColor: "transparent",
     transition: "0.5s",
+    transform: "rotate(6deg)",
+    transformOrigin: "left",
   },
   popup_child_1: {
     transform: "translate(0, 100%) rotate(6deg)",

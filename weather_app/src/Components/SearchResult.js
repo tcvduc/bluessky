@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
   popup_child: {
     backgroundColor: "transparent",
     transition: "0.5s",
+    transform: "rotate(-6deg)",
   },
   popup_child_1: {
     transform: "translate(0, 100%) rotate(6deg)",

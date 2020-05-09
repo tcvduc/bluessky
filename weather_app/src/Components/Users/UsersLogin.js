@@ -176,13 +176,11 @@ class UsersLogin extends React.Component {
             onSubmit={this.handleUsersLogin}
           >
             <UserTextField
-              autoComplete={false}
               label="Username"
               className={classes.mb_20}
               onChange={this.handleChangeUsersname}
             />
             <UserTextField
-              autoComplete={false}
               label="Password"
               className={classes.mb_20}
               type="password"

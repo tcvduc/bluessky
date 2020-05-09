@@ -62,7 +62,8 @@ class Todolist extends Component {
       // axios
       Axios.post(`${devURL}/tasks`, dataAdd, config)
         .then((rs) => {
-          log(rs.data.message);
+          // thêm thành công
+          // log(rs.data.message);
         })
         .catch((e) => {
           log(e.response);
@@ -168,7 +169,8 @@ class Todolist extends Component {
         config
       )
         .then((rs) => {
-          log(rs.data.message);
+          // thay đổi thành công
+          // log(rs.data.message);
         })
         .catch((e) => {
           log(e.response);
@@ -210,7 +212,8 @@ class Todolist extends Component {
 
       Axios.delete(`${devURL}/tasks/${_id}`, config)
         .then((rs) => {
-          log(rs.data.message);
+          // xóa thành công
+          // log(rs.data.message);
         })
         .catch((e) => {
           log(e.response);
