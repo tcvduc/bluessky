@@ -133,8 +133,12 @@ Userrouter.get("/users/dashboard", async (req, res) => {
 // read user by :id params
 Userrouter.get("/users/:id", async (req, res) => {
   const _id = req.params.id;
+
   try {
-    const user = await User.findById(_id);
+    const user = await User.findById(_id).catch((e) => {
+      throw new Error(e);
+    });
+
     res.send(user);
   } catch (error) {
     res.status(500).send(error.message);

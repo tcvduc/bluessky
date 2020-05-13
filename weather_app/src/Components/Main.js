@@ -5,8 +5,13 @@ import Social from "./Social";
 import UsersDashBoard from "./Users/UsersDashBoard";
 import PageNotFound from "./PageNotFound";
 
+let log = console.log;
+
 class Main extends Component {
   // routing right there
+  handleErorrPath = (path) => {
+    log(path);
+  };
   render() {
     return (
       <main>
@@ -31,6 +36,10 @@ class Main extends Component {
           </Route>
           <Route exact path="/users/sign-up">
             <Social />
+          </Route>
+
+          <Route exact path={this.handleErorrPath("/users/:id")}>
+            <PageNotFound />
           </Route>
           <Route>
             <PageNotFound />
