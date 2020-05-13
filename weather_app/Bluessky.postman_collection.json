@@ -14,7 +14,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/tasks",
+							"raw": "{{url}}/tasks?sortBy=completed:asc&limit=max",
 							"host": [
 								"{{url}}"
 							],
@@ -24,13 +24,11 @@
 							"query": [
 								{
 									"key": "sortBy",
-									"value": "completed:desc",
-									"disabled": true
+									"value": "completed:asc"
 								},
 								{
 									"key": "limit",
-									"value": "max",
-									"disabled": true
+									"value": "max"
 								}
 							]
 						}
@@ -61,7 +59,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"description\":\"hoc node 1\",\n\t\"completed\":\"true\"\n}",
+							"raw": "{\n\t\"description\":\"hoc node 1\",\n\t\"completed\":\"true\",\n\t\"_id\":\"asdasdsdas das\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -104,13 +102,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/tasks/5eb23b2132bee53810983b59",
+							"raw": "{{url}}/tasks/5eb3bd3501c81b2a206fba25",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"tasks",
-								"5eb23b2132bee53810983b59"
+								"5eb3bd3501c81b2a206fba25"
 							]
 						}
 					},
@@ -138,6 +136,26 @@
 							"path": [
 								"tasks",
 								"5eb244bfe8bc363968b4c680"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API Get All Task No Auth",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tasks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks"
 							]
 						}
 					},
@@ -209,17 +227,6 @@
 									"value": "ok"
 								}
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Home Page",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": ""
 						}
 					},
 					"response": []
@@ -484,8 +491,11 @@
 					"response": []
 				},
 				{
-					"name": "Read  All Users",
+					"name": "API Read  All Users",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [],
 						"url": {

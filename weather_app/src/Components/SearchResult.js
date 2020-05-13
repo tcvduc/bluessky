@@ -3,11 +3,19 @@ import { makeStyles, Grid } from "@material-ui/core";
 import "./../sass/svg.css";
 import { connect } from "react-redux";
 import classnames from "classnames";
+import { ReactComponent as SunIcon } from "./../assets/svg/sun.svg";
+import { ReactComponent as CloudyIcon } from "./../assets/svg/cloudy.svg";
+import { ReactComponent as RainIcon } from "./../assets/svg/rain.svg";
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "70%",
-    "& > * + *": {
-      marginTop: theme.spacing(2),
+    // width: "70%",
+    // "& > * + *": {
+    //   marginTop: theme.spacing(2),
+    // },
+    "& svg": {
+      height: 25,
+      width: 25,
     },
   },
   resultBg: {
@@ -100,6 +108,25 @@ const useStyles = makeStyles((theme) => ({
 // Làm hiệu ứng popup cho cái này
 // làm từ css chay sang material ui
 
+function handleIcon(icon) {
+  switch (icon) {
+    case "clear-day":
+      return <SunIcon />;
+
+    case "partly-cloudy-day":
+      return <CloudyIcon />;
+
+    case "rain":
+      return <RainIcon />;
+
+    case "cloudy":
+      return <CloudyIcon />;
+
+    default:
+      break;
+  }
+}
+
 function SearchResult(props) {
   const classes = useStyles();
 
@@ -110,7 +137,7 @@ function SearchResult(props) {
   // Dự báo thời tiết
   const { forecastResult, forecastLoading } = props;
   return (
-    <Grid container className={classes.resultBg}>
+    <Grid container className={classes.resultBg + " " + classes.root}>
       <Grid
         className={classnames(
           classes.d_flex_center,
@@ -229,7 +256,9 @@ function SearchResult(props) {
             {forecastResult.length > 0 ? forecastResult[0][0].time : ""}
           </div>
           <div className={classes.icon_forecast}>
-            {forecastResult.length > 0 ? forecastResult[0][0].icon : ""}
+            {forecastResult.length > 0
+              ? handleIcon(forecastResult[0][0].icon)
+              : ""}
           </div>
           <div className={classes.summary_forecast}>
             {forecastResult.length > 0 ? forecastResult[0][0].summary : ""}
@@ -257,7 +286,9 @@ function SearchResult(props) {
             {forecastResult.length > 0 ? forecastResult[0][1].time : ""}
           </div>
           <div className={classes.icon_forecast}>
-            {forecastResult.length > 0 ? forecastResult[0][1].icon : ""}
+            {forecastResult.length > 0
+              ? handleIcon(forecastResult[0][1].icon)
+              : ""}
           </div>
           <div className={classes.summary_forecast}>
             {forecastResult.length > 0 ? forecastResult[0][1].summary : ""}
@@ -296,7 +327,9 @@ function SearchResult(props) {
             {forecastResult.length > 0 ? forecastResult[0][2].time : ""}
           </div>
           <div className={classes.icon_forecast}>
-            {forecastResult.length > 0 ? forecastResult[0][2].icon : ""}
+            {forecastResult.length > 0
+              ? handleIcon(forecastResult[0][2].icon)
+              : ""}
           </div>
           <div className={classes.summary_forecast}>
             {forecastResult.length > 0 ? forecastResult[0][2].summary : ""}
@@ -324,7 +357,9 @@ function SearchResult(props) {
             {forecastResult.length > 0 ? forecastResult[0][3].time : ""}
           </div>
           <div className={classes.icon_forecast}>
-            {forecastResult.length > 0 ? forecastResult[0][3].icon : ""}
+            {forecastResult.length > 0
+              ? handleIcon(forecastResult[0][3].icon)
+              : ""}
           </div>
           <div className={classes.summary_forecast}>
             {forecastResult.length > 0 ? forecastResult[0][3].summary : ""}
@@ -363,7 +398,9 @@ function SearchResult(props) {
             {forecastResult.length > 0 ? forecastResult[0][4].time : ""}
           </div>
           <div className={classes.icon_forecast}>
-            {forecastResult.length > 0 ? forecastResult[0][4].icon : ""}
+            {forecastResult.length > 0
+              ? handleIcon(forecastResult[0][4].icon)
+              : ""}
           </div>
           <div className={classes.summary_forecast}>
             {forecastResult.length > 0 ? forecastResult[0][4].summary : ""}
@@ -391,7 +428,9 @@ function SearchResult(props) {
             {forecastResult.length > 0 ? forecastResult[0][5].time : ""}
           </div>
           <div className={classes.icon_forecast}>
-            {forecastResult.length > 0 ? forecastResult[0][5].icon : ""}
+            {forecastResult.length > 0
+              ? handleIcon(forecastResult[0][5].icon)
+              : ""}
           </div>
           <div className={classes.summary_forecast}>
             {forecastResult.length > 0 ? forecastResult[0][5].summary : ""}
@@ -430,7 +469,9 @@ function SearchResult(props) {
             {forecastResult.length > 0 ? forecastResult[0][6].time : ""}
           </div>
           <div className={classes.icon_forecast}>
-            {forecastResult.length > 0 ? forecastResult[0][6].icon : ""}
+            {forecastResult.length > 0
+              ? handleIcon(forecastResult[0][6].icon)
+              : ""}
           </div>
           <div className={classes.summary_forecast}>
             {forecastResult.length > 0 ? forecastResult[0][6].summary : ""}
@@ -458,7 +499,9 @@ function SearchResult(props) {
             {forecastResult.length > 0 ? forecastResult[0][7].time : ""}
           </div>
           <div className={classes.icon_forecast}>
-            {forecastResult.length > 0 ? forecastResult[0][7].icon : ""}
+            {forecastResult.length > 0
+              ? handleIcon(forecastResult[0][7].icon)
+              : ""}
           </div>
           <div className={classes.summary_forecast}>
             {forecastResult.length > 0 ? forecastResult[0][7].summary : ""}

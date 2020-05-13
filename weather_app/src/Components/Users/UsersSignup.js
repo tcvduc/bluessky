@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withStyles, Box, Grid, Button, TextField } from "@material-ui/core";
 import classnames from "classnames";
 import Axios from "axios";
+
 const style = () => ({
   root: {},
   signupContainer: {
@@ -80,8 +81,8 @@ const SubmitButton = withStyles((theme) => ({
 }))(Button);
 // let log = console.log;
 
-const devURL = "http://localhost:5000";
-//const proURL = "https://bluessky.herokuapp.com";
+// const devURL = "http://localhost:5000";
+const proURL = "https://bluessky.herokuapp.com";
 
 class UsersSignup extends Component {
   state = {
@@ -127,7 +128,7 @@ class UsersSignup extends Component {
     // log(dataSendToServer);
     // axios
 
-    await Axios.post(`${devURL}/users/sign-up`, dataSendToServer)
+    await Axios.post(`${proURL}/users/sign-up`, dataSendToServer)
       .then((result) => {
         const { data } = result;
         const { error } = data;
@@ -143,6 +144,12 @@ class UsersSignup extends Component {
         alert(data.message);
         this.setState({
           signUpSuccess: true,
+          isFocus: true,
+        });
+        this.setState({
+          username: "",
+          password: "",
+          email: "",
         });
       })
       .catch((er) => {
@@ -154,8 +161,11 @@ class UsersSignup extends Component {
       });
   };
 
+  componentDidMount = () => {};
+
   render() {
     const { classes } = this.props;
+    const { username, password, email } = this.state;
     return (
       <Box
         display="flex"
@@ -170,22 +180,25 @@ class UsersSignup extends Component {
             onSubmit={this.handleSubmitUsersSignup}
           >
             <UserTextField
+              autoFocus={true}
               className={classes.mb_20}
               label="Username"
               type="string"
+              value={username}
               onChange={this.handleChangeUsersname}
             />
             <UserTextField
               className={classes.mb_20}
               label="Password"
               type="password"
+              value={password}
               onChange={this.handleChangePassword}
             />
             <UserTextField
-        
               className={classes.mb_20}
               label="Email"
               type="email"
+              value={email}
               onChange={this.handleChangeEmail}
             />
             <SubmitButton
