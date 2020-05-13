@@ -9,6 +9,11 @@ const Userrouter = new express.Router();
 
 let log = console.log;
 
+// sign-up get
+Userrouter.get("/users/sign-up", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../build", "index.html"));
+});
+
 // create user - post method - sign up
 Userrouter.post("/users/sign-up", async (req, res) => {
   const data = req.body;
