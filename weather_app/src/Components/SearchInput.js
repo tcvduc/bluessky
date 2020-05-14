@@ -47,8 +47,8 @@ const styles = (theme) => ({
   },
 });
 
-const devURL = "http://localhost:5000";
-// const proURL = "https://bluessky.herokuapp.com";
+// const devURL = "http://localhost:5000";
+ const proURL = "https://bluessky.herokuapp.com";
 
 // fetch to geocoding API map box
 class SearchInput extends Component {
@@ -81,7 +81,7 @@ class SearchInput extends Component {
     // location.search = keyword;
     //  log(location);
 
-    Axios.get(`${devURL}/api/suggests/geo_data?search=${keyword}`)
+    Axios.get(`${proURL}/api/suggests/geo_data?search=${keyword}`)
       .then((datas) => {
         // log(data.data); -> object includes lat long place
         //  log(datas);
