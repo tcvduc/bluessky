@@ -59,7 +59,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"description\":\"hoc node 1\",\n\t\"completed\":\"true\",\n\t\"_id\":\"asdasdsdas das\"\n}",
+							"raw": "{\n\t\"description\":\"hoc node 2\",\n\t\"completed\":\"true\",\n\t\"_id\":\"1232132333\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -84,13 +84,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/tasks/5eb23b0232bee53810983b57",
+							"raw": "{{url}}/tasks/asdasdsdas das",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"tasks",
-								"5eb23b0232bee53810983b57"
+								"asdasdsdas das"
 							]
 						}
 					},
@@ -121,7 +121,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"completed\": \"1\"\n}",
+							"raw": "{\n    \"completed\": \"0\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -129,33 +129,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/tasks/5eb244bfe8bc363968b4c680",
+							"raw": "{{url}}/tasks/asdasdsdas das",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"tasks",
-								"5eb244bfe8bc363968b4c680"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "API Get All Task No Auth",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/tasks",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"tasks"
+								"asdasdsdas das"
 							]
 						}
 					},
@@ -212,7 +192,7 @@
 							"raw": "{\n\"search\":\"ok\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/api/suggests/geo_data?search=ok",
+							"raw": "{{url}}/api/suggests/geo_data?search=ha noi",
 							"host": [
 								"{{url}}"
 							],
@@ -224,7 +204,7 @@
 							"query": [
 								{
 									"key": "search",
-									"value": "ok"
+									"value": "ha noi"
 								}
 							]
 						}
@@ -309,7 +289,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"heo2\",\n    \"password\": \"heo123\",\n    \"email\": \"heo2@yopmail.com\"\n}",
+							"raw": "{\n    \"username\": \"heo1\",\n    \"password\": \"1\",\n    \"email\": \"heo1@yopmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -517,13 +497,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/users/5e92c58047d30435cc21c117",
+							"raw": "{{url}}/api/users/5ebb73326bad833248985b8bdasd",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"api",
 								"users",
-								"5e92c58047d30435cc21c117"
+								"5ebb73326bad833248985b8bdasd"
 							]
 						}
 					},
