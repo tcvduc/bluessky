@@ -134,17 +134,18 @@ Userrouter.get("/users/dashboard", async (req, res) => {
 
 // bug
 // route này là lấy api của 1 user biết id nênh giao diện không có xử lý
-Userrouter.get("api/users/:id", async (req, res) => {
+Userrouter.get("/api/users/:id", async (req, res) => {
   const _id = req.params.id;
 
   try {
-    await User.findById(_id)
+    const user = await User.findById(_id)
       .catch((e) => {
         res.status(500).send(e);
       })
       .then((user) => {
         res.status(201).send(user);
       });
+    res.send(user);
   } catch (error) {
     res.status(500).send(error.message);
   }

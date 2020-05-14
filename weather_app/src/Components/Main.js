@@ -27,9 +27,7 @@ class Main extends Component {
           <Route exact path="/social">
             <Social />
           </Route>
-          <Route exact path="/api/weather">
-            <Home />
-          </Route>
+
           <Route exact path="/users/login">
             <Social />
           </Route>

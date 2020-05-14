@@ -18,6 +18,11 @@ const style = (theme) => ({
   h_20: {
     height: "15%",
   },
+  user_name_css: {
+    fontWeight: 600,
+    marginRight: 6,
+    textTransform: "capitalize",
+  },
 });
 // let log = console.log;
 class UsersDashBoard extends Component {
@@ -81,7 +86,12 @@ class UsersDashBoard extends Component {
         alignItems="center"
         height="100%"
       >
-        <div className={classes.h_20}>{this.state.user.username} TodoList</div>
+        <div className={classes.h_20}>
+          <span className={classes.user_name_css}>
+            {this.state.user.username}
+          </span>
+          TodoList
+        </div>
         <div id="user_main" className={classes.root + " " + classes.h_80}>
           <Todolist />
         </div>

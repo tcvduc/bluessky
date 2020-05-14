@@ -9,7 +9,7 @@ suggestRouter.get("/api/suggests/geo_data", (req, res) => {
     if (geo_err) {
       return res.send(geo_err);
     }
-    log(geo_res);
+    //  log(geo_res);
 
     // bug - query fail -  nếu không có kếch quả thì thông báo không có nơi này
 
