@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import Axios from "axios";
 import { connect } from "react-redux";
 
+// let log = console.log;
 // custom input
 
 const CssTextField = withStyles({
@@ -46,14 +47,14 @@ const styles = (theme) => ({
   },
 });
 
- const devURL = "http://localhost:5000";
- // const proURL = "https://bluessky.herokuapp.com";
+const devURL = "http://localhost:5000";
+// const proURL = "https://bluessky.herokuapp.com";
 
-let log = console.log;
 // fetch to geocoding API map box
 class SearchInput extends Component {
   state = {
     clientInput: [],
+    value: "",
   };
 
   handleChange = (event) => {
@@ -61,6 +62,7 @@ class SearchInput extends Component {
     let newData = [...this.state.clientInput, clientInput_temporary];
     this.setState({
       clientInput: newData,
+      value: event.target.value,
     });
   };
 
@@ -89,27 +91,20 @@ class SearchInput extends Component {
         //   return data.place_name;
         // });
         //this.props.suggestions(place_Suggestions);
+
         this.props.suggestions(datas.data);
 
         this.props.isLoading(false);
+        this.setState({
+          value: "",
+        });
       })
-      .catch((err) => log(err));
-
-    // Axios.get(`http://localhost:5000/api/weather?search=${keyword}`)
-    //   .then((data) => {
-    //     // log(data.data);
-    //     this.props.client_result(data.data);
-    //     this.props.isLoading(false);
-    //   })
-    //   .catch((err) => {
-    //     log(err);
-    //   });
+      .catch((err) => {
+        //  log(err.response);
+        alert(err.response.data.error);
+        //alert(err.response);
+      });
   };
-
-  // renderSuggestion = () => {
-  //   const newData = [...this.state.clientInput];
-  //   //log(newData);
-  // };
 
   render() {
     const { classes } = this.props;
@@ -129,6 +124,7 @@ class SearchInput extends Component {
           id="custom_input"
           label="Place"
           fullWidth={true}
+          value={this.state.value}
         />
       </form>
     );
