@@ -22,22 +22,19 @@ Userrouter.post("/users/sign-up", async (req, res) => {
   const { username, email } = data;
 
   const users = await User.findOne({ username });
-  if (users) {
-    // log("User name is not available!");
-    // Nếu mail đã đăng ký rồi thì không cho đăng ký
-    const checkMail = await User.findOne({ email });
-
-    if (checkMail) {
-      res.send({
-        error: "Email has been used!",
-        status: 500,
-      });
-    } else {
-      res.send({
-        error: "User name is not available!",
-        status: 500,
-      });
-    }
+  const checkMail = await User.findOne({ email });
+  // log("User name is not available!");
+  // Nếu mail đã đăng ký rồi thì không cho đăng ký
+  if (checkMail) {
+    res.send({
+      error: "Email has been used!",
+      status: 500,
+    });
+  } else if (users) {
+    res.send({
+      error: "User name is not available!",
+      status: 500,
+    });
   } else {
     try {
       const newUser = new User(data);
@@ -198,7 +195,7 @@ Userrouter.delete("/users/:id", async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(_id);
     if (!user) {
-      return res.status(404).send(user);
+      return res.status(404).send({ message: "Không tìm thấy user" });
     }
     res.status(200).send("Deleted!");
   } catch (error) {
