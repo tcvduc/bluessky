@@ -1,6 +1,17 @@
 # bluessky
 
-HƯỚNG DẪN SỬ DỤNG
+## HƯỚNG DẪN SỬ DỤNG
+
+Cài đặt mongodb
+
+- Bước 1: Cài đặt mongodb
+- Bước 2: Mình cài trong ổ D:/, và tạo trong ổ D:/ 2 thư mục là mongodb (cài đặt mongodb ở thư mục này), mongodb_data (thư mục quản lý data)
+- Bước 3: Tạo file mongodb.txt và điền vào lệnh: D:\mongodb\mongodb\bin\mongod.exe --dbpath=D:\mongodb_data
+- Bước 4: chuyển đuôi file mongodb.txt thành mongodb.bat, rồi thực thi file đó
+
+---
+
+Sử dụng
 
 - Bước 1: Tải file, mở file bằng môi trường code.
 
