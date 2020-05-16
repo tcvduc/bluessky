@@ -59,7 +59,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"description\":\"hoc node 2\",\n\t\"completed\":\"true\",\n\t\"_id\":\"1232132333\"\n}",
+							"raw": "{\n\t\"description\":\"hoc node 3\",\n\t\"completed\":\"false\",\n\t\"_id\":\"1232132333333\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -84,13 +84,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/tasks/asdasdsdas das",
+							"raw": "{{url}}/tasks/1232132333",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"tasks",
-								"asdasdsdas das"
+								"1232132333"
 							]
 						}
 					},
@@ -129,13 +129,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/tasks/asdasdsdas das",
+							"raw": "{{url}}/tasks/1232132333",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"tasks",
-								"asdasdsdas das"
+								"1232132333"
 							]
 						}
 					},
@@ -289,7 +289,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"heo1\",\n    \"password\": \"1\",\n    \"email\": \"heo1@yopmail.com\"\n}",
+							"raw": "{\n    \"username\": \"heo2\",\n    \"password\": \"1\",\n    \"email\": \"heo2@yopmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -321,30 +321,6 @@
 							],
 							"path": [
 								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Logout All Device",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTkyYzYxOWJkZDljMzM1ODBhYzUxOTciLCJpYXQiOjE1ODY3NjM0ODN9.lMR3XOIYLgMwUN7jpVkcXFkkkVRacFMGxwgehTsKH0E",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/users/logoutalldevice",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"logoutalldevice"
 							]
 						}
 					},
