@@ -39,6 +39,8 @@ Sơ đồ quan hệ
 - Chọn Open Exists Diagram
 - Chọn file RelationshipComponent.drawio trong thư mục weather_app
 
+- Thinking in react: Bluessky_Relationship_Thinking_In_React.drawio
+
 ---
 
 Hiệu ứng CSS thuần trước khi chuyển sang Material - UI
